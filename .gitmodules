@@ -1,0 +1,3 @@
+[submodule "xdr"]
+	path = xdr
+	url = https://github.com/tokend/xdr.git
