@@ -88,7 +88,7 @@ describe("Manage sale", function () {
                     asset: "BTC",
                 },
             ],
-            isCrowdfunding: false,
+            saleType: false,
             baseAssetForHardCap: "648251"
         };
 

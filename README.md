@@ -1,7 +1,7 @@
 # JS Base
 
 The js-base library is the lowest-level helper library.  It consists of classes
-to read, write, hash, and sign the xdr structures that are used in [core].
+to read, write, hash, and sign the xdr structures that are used in core.
 This is an implementation in JavaScript that can be used on either Node.js or web browsers.
 js-base is fork of [js-stellar-base](github.com/stellar/js-stellar-base)
 

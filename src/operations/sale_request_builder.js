@@ -1,13 +1,12 @@
 import {default as xdr} from "../generated/stellar-xdr_generated";
 import isUndefined from 'lodash/isUndefined';
 import {BaseOperation} from './base_operation';
-import {Keypair} from "../keypair";
 import {UnsignedHyper, Hyper} from "js-xdr";
 
 export class SaleRequestBuilder {
 
     /**
-     * Creates operation to create withdraw request with autoconversion
+     * Creates operation to create sale request
      * @param {object} opts
      * @param {string} opts.requestID - ID of the request. 0 - to create new;
      * @param {string} opts.baseAsset - asset for which sale will be performed
@@ -24,7 +23,7 @@ export class SaleRequestBuilder {
      * @param {array} opts.quoteAssets - accepted assets
      * @param {object} opts.quoteAssets.price - price for 1 baseAsset in terms of quote asset
      * @param {object} opts.quoteAssets.asset - asset code of the quote asset
-     * @param {object} opts.isCrowdfunding - states if sale type is crowd funding
+     * @param {number} opts.saleType - Sale type
      * @param {string} opts.baseAssetForHardCap - specifies the amount of base asset required for hard cap
      * @param {SaleState} opts.saleState - specifies the initial state of the sale
      * @param {string} [opts.source] - The source account for the operation. Defaults to the transaction's source account.
@@ -44,9 +43,29 @@ export class SaleRequestBuilder {
         return new xdr.Operation(opAttributes);
     }
 
+    /**
+     * Creates operation to cancel sale request
+     * @param {object} opts
+     * @param {string} opts.requestID - ID of the request
+     * @param {string} [opts.source] - The source account for the operation.
+     * Defaults to the transaction's source account.
+     * @returns {xdr.CancelSaleCreationRequestOp}
+     */
+    static cancelSaleCreationRequest(opts) {
+        let cancelSaleCreationRequestOp = new xdr.CancelSaleCreationRequestOp({
+            requestId: UnsignedHyper.fromString(opts.requestID),
+            ext: new xdr.CancelSaleCreationRequestOpExt(
+                xdr.LedgerVersion.emptyVersion())
+        });
+        let opAttributes = {};
+        opAttributes.body = xdr.OperationBody.cancelSaleRequest(
+            cancelSaleCreationRequestOp);
+        BaseOperation.setSourceAccount(opAttributes, opts);
+        return new xdr.Operation(opAttributes);
+    }
+
     static validateSaleCreationRequest(opts) {
         let attrs = {};
-
         if (!BaseOperation.isValidAsset(opts.baseAsset)) {
             throw new Error("opts.baseAsset is invalid");
         }
@@ -81,64 +100,88 @@ export class SaleRequestBuilder {
         attrs.details = JSON.stringify(opts.details);
         attrs.ext = new xdr.SaleCreationRequestExt(xdr.LedgerVersion.emptyVersion());
 
-        let isCrowdfunding = !isUndefined(opts.isCrowdfunding) && opts.isCrowdfunding;
-        let hasBaseAssetForHardCap = !isUndefined(opts.baseAssetForHardCap);
-
-        let saleTypeExt;
-
-        if (isCrowdfunding) {
-            let crowdFundingSale = new xdr.CrowdFundingSale({
-                ext: new xdr.CrowdFundingSaleExt(xdr.LedgerVersion.emptyVersion()),
-            });
-            let saleTypeExtTypedSale = xdr.SaleTypeExtTypedSale.crowdFunding(crowdFundingSale);
-            saleTypeExt = new xdr.SaleTypeExt({
-                typedSale: saleTypeExtTypedSale,
-            });
+        if (isUndefined(opts.saleType) || !opts.saleType) {
+            attrs.saleType = xdr.SaleType.basicSale().value;
+        }
+        else if (opts.saleType === true) {
+            attrs.saleType = xdr.SaleType.crowdFunding().value;
         } else {
-            let basicSale = new xdr.BasicSale({
-                ext: new xdr.BasicSaleExt(xdr.LedgerVersion.emptyVersion()),
-            });
-            let saleTypeExtTypedSale = xdr.SaleTypeExtTypedSale.basicSale(basicSale);
-            saleTypeExt = new xdr.SaleTypeExt({
-                typedSale: saleTypeExtTypedSale,
-            });
+            attrs.saleType = opts.saleType;
         }
 
-        if (hasBaseAssetForHardCap && isUndefined(opts.saleState)) {
-            let extV2 = new xdr.SaleCreationRequestExtV2({
+        var hasBaseAssetForHardCap = !isUndefined(opts.baseAssetForHardCap);
+
+        var saleTypeExt;
+        var saleTypeExtTypedSale;
+        switch(attrs.saleType) {
+            case xdr.SaleType.basicSale().value: {
+                var basicSale = new xdr.BasicSale({
+                    ext: new xdr.BasicSaleExt(xdr.LedgerVersion.emptyVersion())
+                });
+                saleTypeExtTypedSale = xdr.SaleTypeExtTypedSale.basicSale(basicSale);
+                saleTypeExt = new xdr.SaleTypeExt({
+                    typedSale: saleTypeExtTypedSale
+                });
+                break;
+            }
+            case xdr.SaleType.crowdFunding().value: {
+                var crowdFundingSale = new xdr.CrowdFundingSale({
+                    ext: new xdr.CrowdFundingSaleExt(xdr.LedgerVersion.emptyVersion())
+                });
+                saleTypeExtTypedSale = xdr.SaleTypeExtTypedSale.crowdFunding(crowdFundingSale);
+                saleTypeExt = new xdr.SaleTypeExt({
+                    typedSale: saleTypeExtTypedSale
+                });
+                break;
+            }
+            case xdr.SaleType.fixedPrice().value: {
+                var fixedPriceSale = new xdr.FixedPriceSale({
+                    ext: new xdr.FixedPriceSaleExt(xdr.LedgerVersion.emptyVersion())
+                });
+                saleTypeExtTypedSale = xdr.SaleTypeExtTypedSale.fixedPrice(fixedPriceSale);
+                saleTypeExt = new xdr.SaleTypeExt({
+                    typedSale: saleTypeExtTypedSale
+                });
+                break;
+            }
+        }
+
+        if (hasBaseAssetForHardCap && isUndefined(opts.saleState) &&
+        attrs.saleType !== xdr.SaleType.fixedPrice().value) {
+            var extV2 = new xdr.SaleCreationRequestExtV2({
                 saleTypeExt: saleTypeExt,
-                requiredBaseAssetForHardCap: BaseOperation._toUnsignedXDRAmount(opts.baseAssetForHardCap),
-            });
+                requiredBaseAssetForHardCap: BaseOperation._toUnsignedXDRAmount(opts.baseAssetForHardCap) });
 
             attrs.ext = xdr.SaleCreationRequestExt.allowToSpecifyRequiredBaseAssetAmountForHardCap(extV2);
         } else if (!isUndefined(opts.saleState)) {
-            let extV3 = new xdr.SaleCreationRequestExtV3({
+            var extV3 = new xdr.SaleCreationRequestExtV3({
                 saleTypeExt: saleTypeExt,
                 requiredBaseAssetForHardCap: BaseOperation._toUnsignedXDRAmount(opts.baseAssetForHardCap),
-                state: opts.saleState,
-            });
+                state: opts.saleState });
 
             attrs.ext = xdr.SaleCreationRequestExt.statableSale(extV3);
-        }
-        else if (isCrowdfunding) {
+        } else if (attrs.saleType === xdr.SaleType.crowdFunding().value) {
             attrs.ext = xdr.SaleCreationRequestExt.typedSale(saleTypeExt);
+        } else if (attrs.saleType === xdr.SaleType.fixedPrice().value &&
+            (!hasBaseAssetForHardCap || isUndefined(opts.saleState))) {
+            throw new Error("opts.saleType is FixedPrice, but no baseAssetForHardCap and/or saleState not provided");
         }
 
-        let request = new xdr.SaleCreationRequest(attrs);
+        var request = new xdr.SaleCreationRequest(attrs);
 
         if (isUndefined(opts.requestID)) {
             opts.requestID = "0";
         }
 
-        if (isUndefined(opts.quoteAssets) || opts.quoteAssets.length == 0) {
+        if (isUndefined(opts.quoteAssets) || opts.quoteAssets.length === 0) {
             throw new Error("opts.quoteAssets is invalid");
         }
 
         attrs.quoteAssets = [];
         for (var i = 0; i < opts.quoteAssets.length; i++) {
-            let quoteAsset = opts.quoteAssets[i];
+            var quoteAsset = opts.quoteAssets[i];
             var minAmount, maxAmount;
-            if (isCrowdfunding) {
+            if (attrs.saleType === xdr.SaleType.crowdFunding().value) {
                 minAmount = 1;
                 maxAmount = 1;
             }
@@ -211,6 +254,10 @@ export class SaleRequestBuilder {
                 break;
             }
         }
+    }
+
+    static cancelSaleCreationRequestToObject(result, attrs) {
+        result.requestID = attrs.requestId().toString();
     }
 
     /**

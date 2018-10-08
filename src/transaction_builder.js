@@ -57,6 +57,7 @@ export class TransactionBuilder {
      * @param {string} [opts.timebounds.minTime] - 64 bit unix timestamp
      * @param {string} [opts.timebounds.maxTime] - 64 bit unix timestamp
      * @param {Memo} [opts.memo] - The memo for the transaction
+     * @param {number|string} [opts.MaxTotalFee] - Max fee amount that source is willing to pay
      */
     constructor(sourceAccount, opts={}) {
         if (!sourceAccount) {
@@ -69,6 +70,7 @@ export class TransactionBuilder {
         this.timebounds = clone(opts.timebounds);
         this.salt = opts.salt;
         this.memo       = opts.memo || Memo.none();
+        this.maxTotalFee = opts.MaxTotalFee;
 
         // the signed base64 form of the transaction to be sent to Horizon
         this.blob = null;
@@ -91,6 +93,16 @@ export class TransactionBuilder {
      */
     addMemo(memo) {
         this.memo = memo;
+        return this;
+    }
+
+    /**
+     * Adds max total fee to the transaction.
+     * @param {number|string} maxTotalFee.
+     * @returns {TransactionBuilder}
+     */
+    addMaxTotalFee(maxTotalFee) {
+        this.maxTotalFee = maxTotalFee;
         return this;
     }
 
@@ -124,6 +136,10 @@ export class TransactionBuilder {
         };
 
         attrs.timeBounds = new xdr.TimeBounds(this.timebounds);
+
+        if (!isUndefined(this.maxTotalFee)) {
+            attrs.ext = new xdr.TransactionExt.addTransactionFee(Operation._toUnsignedXDRAmount(this.maxTotalFee));
+        }
 
         let xtx = new xdr.Transaction(attrs);
         xtx.operations(this.operations);
