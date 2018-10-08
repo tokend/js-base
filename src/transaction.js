@@ -41,6 +41,9 @@ export class Transaction {
 
         let signatures = envelope.signatures() || [];
         this.signatures = map(signatures, s => s);
+
+        let maxTotalFee = envelope.tx().ext().maxTotalFee() || 0;
+        this.maxTotalFee = Operation._fromXDRAmount(maxTotalFee);
     }
 
     /**

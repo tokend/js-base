@@ -4,7 +4,7 @@ import {BaseOperation} from './base_operation';
 import {Keypair} from "../keypair";
 import {UnsignedHyper, Hyper} from "js-xdr";
 import {Hasher} from '../util/hasher';
-import {Operation} from "../operation";
+import {PaymentV2Builder} from "./payment_v2_builder";
 
 export class ReviewRequestBuilder {
 
@@ -17,6 +17,9 @@ export class ReviewRequestBuilder {
      * @param {number} opts.action - action to be performed over request (xdr.ReviewRequestOpAction)
      * @param {string} opts.reason - Reject reason
      * @param {string} [opts.source] - The source account for the payment. Defaults to the transaction's source account.
+     * @param {number|string} opts.tasksToAdd - new tasks for reviewable request to be accomplished before fulfill
+     * @param {number|string} opts.tasksToRemove - tasks, which were done by the reviewer and should be removed
+     * @param {string} opts.ExternalDetails - the reviewer's commentary
      * @returns {xdr.ReviewRequestOp}
      */
     static reviewRequest(opts) {
@@ -60,7 +63,27 @@ export class ReviewRequestBuilder {
         }
 
         attrs.reason = opts.reason;
-        attrs.ext = new xdr.ReviewRequestOpExt(xdr.LedgerVersion.emptyVersion());
+
+        if (isUndefined(opts.tasksToAdd)) {
+            opts.tasksToAdd = 0;
+        }
+
+        if (isUndefined(opts.tasksToRemove)) {
+            opts.tasksToRemove = 0;
+        }
+
+        if (isUndefined(opts.externalDetails)) {
+            opts.externalDetails = {};
+        }
+
+        let reviewDetails = new xdr.ReviewDetails({
+            tasksToAdd: opts.tasksToAdd,
+            tasksToRemove: opts.tasksToRemove,
+            externalDetails: JSON.stringify(opts.externalDetails),
+            ext: new xdr.ReviewDetailsExt(xdr.LedgerVersion.emptyVersion())
+        });
+
+        attrs.ext = new xdr.ReviewRequestOpExt.addTasksToReviewableRequest(reviewDetails);
 
         return attrs;
     }
@@ -214,6 +237,47 @@ export class ReviewRequestBuilder {
         return ReviewRequestBuilder._createOp(opts, attrs);
     }
 
+    /**
+     * Creates operation to review invoice request
+     * @param {object} opts
+     * @param {string} opts.requestID - request ID
+     * @param {string} opts.requestHash - Hash of the request to be reviewed
+     * @param {number} opts.action - action to be performed over request (xdr.ReviewRequestOpAction)
+     * @param {string} opts.reason - Reject reason
+     * @param {object} opts.billPayDetails - invoice payment details (xdr.PaymentOpV2)
+     * @param {string} [opts.source] - The source account for the payment. Defaults to the transaction's source account.
+     * @returns {xdr.ReviewRequestOp}
+     */
+    static reviewInvoiceRequest(opts) {
+        let attrs = ReviewRequestBuilder._prepareAttrs(opts);
+        let billPayDetails = PaymentV2Builder.prepareAttrs(opts.billPayDetails);
+        attrs.requestDetails = new xdr.ReviewRequestOpRequestDetails.invoice(new xdr.BillPayDetails({
+            paymentDetails: new xdr.PaymentOpV2(billPayDetails),
+            ext: new xdr.BillPayDetailsExt(xdr.LedgerVersion.emptyVersion())
+        }));
+        return ReviewRequestBuilder._createOp(opts, attrs);
+    }
+
+    /**
+     * Creates operation to review contract request
+     * @param {object} opts
+     * @param {string} opts.requestID - request ID
+     * @param {string} opts.requestHash - Hash of the request to be reviewed
+     * @param {number} opts.action - action to be performed over request (xdr.ReviewRequestOpAction)
+     * @param {string} opts.reason - Reject reason
+     * @param {object} opts.details - customer details about contract
+     * @param {string} [opts.source] - The source account for the review request. Defaults to the transaction's source account.
+     * @returns {xdr.ReviewRequestOp}
+     */
+    static reviewContractRequest(opts) {
+        let attrs = ReviewRequestBuilder._prepareAttrs(opts);
+        attrs.requestDetails = new xdr.ReviewRequestOpRequestDetails.contract(new xdr.ContractDetails({
+            details: JSON.stringify(opts.details),
+            ext: new xdr.ContractDetailsExt(xdr.LedgerVersion.emptyVersion())
+        }));
+        return ReviewRequestBuilder._createOp(opts, attrs);
+    }
+
     static reviewRequestToObject(result, attrs) {
         result.requestID = attrs.requestId().toString();
         result.requestHash = attrs.requestHash().toString('hex');
@@ -271,9 +335,33 @@ export class ReviewRequestBuilder {
                 };
                 break;
             }
+            case xdr.ReviewableRequestType.invoice(): {
+                let billPayDetails = {};
+                PaymentV2Builder.paymentV2ToObject(billPayDetails, attrs.requestDetails().billPay().paymentDetails());
+                result.invoice = {
+                    billPayDetails: billPayDetails
+                };
+                break;
+            }
+            case xdr.ReviewableRequestType.contract(): {
+                result.contract = {
+                    details: JSON.parse(attrs.requestDetails().contract().details())
+                };
+                break;
+            }
         }
         result.action = attrs.action().value;
         result.reason = attrs.reason();
 
+        switch (attrs.ext().switch())
+        {
+            case xdr.LedgerVersion.addTasksToReviewableRequest(): {
+                let reviewDetails = attrs.ext().reviewDetails();
+                result.tasksToAdd = reviewDetails.tasksToAdd();
+                result.tasksToRemove = reviewDetails.tasksToRemove();
+                result.externalDetails = reviewDetails.externalDetails();
+                break;
+            }
+        }
     }
 }

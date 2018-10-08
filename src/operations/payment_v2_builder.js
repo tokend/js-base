@@ -5,27 +5,7 @@ import {Keypair} from "../keypair";
 import {UnsignedHyper, Hyper} from "js-xdr";
 
 export class PaymentV2Builder {
-    /**
-     * Creates PaymentV2 operation where destination is AccountID or BalanceID
-     * @param {object} opts
-     * @param {string} opts.sourceBalanceId
-     * @param {string} opts.destination
-     * @param {number|string} opts.amount
-     * @param {object} opts.feeData
-     * * @param {object} opts.feeData.sourceFee
-     * * * @param {number|string} opts.feeData.sourceFee.maxPaymentFee
-     * * * @param {number|string} opts.feeData.sourceFee.fixedFee
-     * * * @param {string} opts.feeData.sourceFee.feeAsset
-     * * @param {object} opts.feeData.destinationFee
-     * * * @param {number|string} opts.feeData.destinationFee.maxPaymentFee
-     * * * @param {number|string} opts.feeData.destinationFee.fixedFee
-     * * * @param {string} opts.feeData.destinationFee.feeAsset
-     * * @param {bool} opts.feeData.sourcePaysForDest
-     * @param {string} opts.subject
-     * @param {string} opts.reference
-     * @returns {xdr.PaymentOpV2}
-     */
-    static paymentV2(opts) {
+    static prepareAttrs(opts) {
         let attrs = {};
 
         if (!Keypair.isValidBalanceKey(opts.sourceBalanceId)) {
@@ -89,6 +69,31 @@ export class PaymentV2Builder {
         attrs.reference = opts.reference;
         attrs.ext = new xdr.PaymentOpV2Ext(xdr.LedgerVersion.emptyVersion());
 
+        return attrs;
+    }
+
+    /**
+     * Creates PaymentV2 operation where destination is AccountID or BalanceID
+     * @param {object} opts
+     * @param {string} opts.sourceBalanceId
+     * @param {string} opts.destination
+     * @param {number|string} opts.amount
+     * @param {object} opts.feeData
+     * * @param {object} opts.feeData.sourceFee
+     * * * @param {number|string} opts.feeData.sourceFee.maxPaymentFee
+     * * * @param {number|string} opts.feeData.sourceFee.fixedFee
+     * * * @param {string} opts.feeData.sourceFee.feeAsset
+     * * @param {object} opts.feeData.destinationFee
+     * * * @param {number|string} opts.feeData.destinationFee.maxPaymentFee
+     * * * @param {number|string} opts.feeData.destinationFee.fixedFee
+     * * * @param {string} opts.feeData.destinationFee.feeAsset
+     * * @param {bool} opts.feeData.sourcePaysForDest
+     * @param {string} opts.subject
+     * @param {string} opts.reference
+     * @returns {xdr.PaymentOpV2}
+     */
+    static paymentV2(opts) {
+        let attrs = PaymentV2Builder.prepareAttrs(opts);
         let paymentV2 = new xdr.PaymentOpV2(attrs);
         let opAttrs = {};
         opAttrs.body = xdr.OperationBody.paymentV2(paymentV2);

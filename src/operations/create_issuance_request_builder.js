@@ -14,6 +14,7 @@ export class CreateIssuanceRequestBuilder {
      * @param {string} opts.receiver - balance ID of the receiver
      * @param {string} opts.reference - Reference of the request
      * @param {object} opts.externalDetails - External details needed for PSIM to process withdraw operation
+     * @param {number|string} opts.allTasks - Bitmask of all tasks which must be completed for the request approval
      * @param {string} [opts.source] - The source account for the payment. Defaults to the transaction's source account.
      * @returns {xdr.CreateIssuanceRequestOp}
      */
@@ -55,11 +56,14 @@ export class CreateIssuanceRequestBuilder {
 
         attrs.ext = new xdr.IssuanceRequestExt(xdr.LedgerVersion.emptyVersion());
         let request = new xdr.IssuanceRequest(attrs);
+
+        let rawAllTasks = BaseOperation._checkUnsignedIntValue("allTasks", opts.allTasks);
+
         let issuanceRequestOp = new xdr.CreateIssuanceRequestOp({
             request: request,
             reference: opts.reference,
             externalDetails: request.externalDetails(),
-            ext: new xdr.CreateIssuanceRequestOpExt(xdr.LedgerVersion.emptyVersion())
+            ext: new xdr.CreateIssuanceRequestOpExt.addTasksToReviewableRequest(rawAllTasks)
         });
         let opAttributes = {};
         opAttributes.body = xdr.OperationBody.createIssuanceRequest(issuanceRequestOp);
@@ -74,5 +78,11 @@ export class CreateIssuanceRequestBuilder {
         result.amount = BaseOperation._fromXDRAmount(request.amount());
         result.receiver = BaseOperation.balanceIdtoString(request.receiver());
         result.externalDetails = JSON.parse(request.externalDetails());
+        switch (attrs.ext().switch()) {
+            case xdr.LedgerVersion.addTasksToReviewableRequest(): {
+                result.allTasks = attrs.ext().allTasks();
+                break;
+            }
+        }
     }
 }

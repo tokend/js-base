@@ -489,42 +489,6 @@ describe('Operation', function () {
 
     });
 
-
-    describe(".reviewPaymentRequest", function () {
-        let account = StellarBase.Keypair.random();
-        it("valid reviewPaymentRequest", function () {
-            let operationType = StellarBase.xdr.OperationType.reviewPaymentRequest();
-            var opts = {
-                accept: true,
-                paymentId: '1',
-                rejectReason: 'some reason'
-            };
-            let op = StellarBase.Operation.reviewPaymentRequest(opts);
-            var xdr = op.toXDR("hex");
-            var operation = StellarBase.xdr.Operation.fromXDR(new Buffer(xdr, "hex"));
-            var obj = StellarBase.Operation.operationToObject(operation);
-            expect(obj.type).to.be.equal("reviewPaymentRequest");
-            expect(obj.accept).to.be.equal(true);
-            expect(obj.rejectReason).to.be.equal('some reason');
-            expect(obj.paymentId).to.be.equal('1');
-        });
-
-
-        it("fails to create reviewPaymentRequest operation with an undefined accept", function () {
-            var opts = {
-                paymentId: '1',
-            };
-            expect(() => StellarBase.Operation.reviewPaymentRequest(opts)).to.throw(/accept should be defined/)
-        });
-
-        it("fails to create reviewPaymentRequest operation with an undefined paymentId", function () {
-            var opts = {
-                accept: true,
-            };
-            expect(() => StellarBase.Operation.reviewPaymentRequest(opts)).to.throw(/paymentId should be defined/)
-        });
-    });
-
     describe(".manageAssetPair", function () {
         let base = 'ETH';
         let quote = "USD";
@@ -558,30 +522,6 @@ describe('Operation', function () {
         });
 
     });
-
-    describe(".manageInvoice()", function () {
-        it("creates a manageInvoice", function () {
-            var sender = StellarBase.Keypair.random().accountId();
-            var receiverBalance = StellarBase.Keypair.random().balanceId();
-            var amount = "1000";
-            var invoiceId = "0";
-            let op = StellarBase.Operation.manageInvoice({
-                sender, receiverBalance,
-                amount, invoiceId
-            });
-            var xdr = op.toXDR("hex");
-            var operation = StellarBase.xdr.Operation.fromXDR(new Buffer(xdr, "hex"));
-            var obj = StellarBase.Operation.operationToObject(operation);
-            expect(obj.type).to.be.equal("manageInvoice");
-            expect(obj.sender).to.be.equal(sender);
-            expect(obj.receiverBalance).to.be.equal(receiverBalance);
-            expect(operation.body().value().amount().toString()).to.be.equal('1000000000');
-            expect(obj.amount).to.be.equal(amount);
-            expect(obj.invoiceId).to.be.equal(invoiceId);
-        });
-    });
-
-
 
     describe("._checkUnsignedIntValue()", function () {
         it("returns true for valid values", function () {

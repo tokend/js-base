@@ -7,10 +7,12 @@ describe('TransactionBuilder', function() {
         var memo;
         var sourceBalanceId;
         var destinationBalanceId;
+        var maxTotalFee;
         beforeEach(function () {
             source = new StellarBase.Account("GCEZWKCA5VLDNRLN3RPRJMRZOX3Z6G5CHCGSNFHEYVXM3XOJMDS674JZ", "0");
             amount = "1000";
             memo = StellarBase.Memo.id("100");
+            maxTotalFee = '100';
             sourceBalanceId = StellarBase.Keypair.random().balanceId();
             destinationBalanceId = StellarBase.Keypair.random().balanceId();
             let sourceBalance = sourceBalanceId;
@@ -39,6 +41,7 @@ describe('TransactionBuilder', function() {
                     },
                 }))
                 .addMemo(memo)
+                .addMaxTotalFee(maxTotalFee)
                 .build();
         });
 
@@ -54,6 +57,11 @@ describe('TransactionBuilder', function() {
             expect(transaction.operations[0].type).to.be.equal("payment");
             done();
         });
+
+        it("should have max total fee", function (done) {
+            expect(transaction.maxTotalFee).to.be.equal(maxTotalFee);
+            done();
+        })
     });
 
     describe("constructs a native payment transaction with two operations", function() {

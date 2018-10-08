@@ -2,8 +2,8 @@ import BigNumber from 'bignumber.js';
 import { Hyper } from "js-xdr";
 import isEqual from 'lodash/isEqual';
 
-describe('Create Sale Creation request op', function () {
-    it("Success", function () {
+describe('Manage Sale Creation request op', function () {
+    it("Success create", function () {
         let opt = {
             requestID: "12",
             baseAsset: "XAAU",
@@ -47,7 +47,7 @@ describe('Create Sale Creation request op', function () {
         expect(isEqual(opt.details, obj.details)).to.be.true;
 
     });
-    it("Success Crowdfund", function () {
+    it("Success create Crowdfund", function () {
         let opt = {
             requestID: "12",
             baseAsset: "XAAU",
@@ -72,7 +72,7 @@ describe('Create Sale Creation request op', function () {
                     asset: "BTC",
                 },
             ],
-            isCrowdfunding: true,
+            saleType: true,
             baseAssetForHardCap: "648251"
         }
         let op = StellarBase.SaleRequestBuilder.createSaleCreationRequest(opt);
@@ -90,7 +90,7 @@ describe('Create Sale Creation request op', function () {
         expect(isEqual(opt.details, obj.details)).to.be.true;
         expect(opt.baseAssetForHardCap).to.be.equal(obj.baseAssetForHardCap);
     });
-    it("Success basic sale", function () {
+    it("Success create basic sale", function () {
         let opt = {
             requestID: "12",
             baseAsset: "XAAU",
@@ -115,7 +115,7 @@ describe('Create Sale Creation request op', function () {
                     asset: "BTC",
                 },
             ],
-            isCrowdfunding: false,
+            saleType: false,
             baseAssetForHardCap: "648251"
         }
         let op = StellarBase.SaleRequestBuilder.createSaleCreationRequest(opt);
@@ -132,5 +132,16 @@ describe('Create Sale Creation request op', function () {
         expect(JSON.stringify(opt.quoteAssets)).to.be.equal(JSON.stringify(obj.quoteAssets));
         expect(isEqual(opt.details, obj.details)).to.be.true;
         expect(opt.baseAssetForHardCap).to.be.equal(obj.baseAssetForHardCap);
+    });
+    it("Success cancel sale creation request", function () {
+        let opt = {
+            requestID: "120"
+        };
+        let op = StellarBase.SaleRequestBuilder.cancelSaleCreationRequest(opt);
+        let xdr = op.toXDR("hex");
+        let operation = StellarBase.xdr.Operation.fromXDR(new Buffer(xdr, "hex"));
+        let obj = StellarBase.Operation.operationToObject(operation);
+        expect(obj.type).to.be.equal(StellarBase.xdr.OperationType.cancelSaleRequest().name);
+        expect(opt.requestID).to.be.equal(obj.requestID);
     });
 });

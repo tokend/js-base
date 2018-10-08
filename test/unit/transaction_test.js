@@ -9,6 +9,7 @@ describe('Transaction', function() {
         minTime: "1455287522",
         maxTime: "1455297545"
     };
+    let maxTotalFee = '100';
     let input = new StellarBase.TransactionBuilder(source, {timebounds})
                 .addOperation(StellarBase.Operation.payment({
                         amount,
@@ -29,6 +30,7 @@ describe('Transaction', function() {
                     })
                 )
                 .addMemo(StellarBase.Memo.text('Happy birthday!'))
+                .addMaxTotalFee(maxTotalFee)
                 .build()
                 .toEnvelope()
                 .toXDR('base64');
@@ -39,6 +41,7 @@ describe('Transaction', function() {
 
     expect(transaction.source).to.be.equal(source.accountId());
     expect(transaction.memo.text()).to.be.equal('Happy birthday!');
+    expect(transaction.maxTotalFee).to.be.equal(maxTotalFee);
     expect(operation.type).to.be.equal('payment');
     expect(operation.amount).to.be.equal(amount);
 

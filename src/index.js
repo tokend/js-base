@@ -23,6 +23,7 @@ export { CreateWithdrawRequestBuilder } from './operations/create_withdraw_reque
 export { SaleRequestBuilder } from './operations/sale_request_builder';
 export { ManageOfferBuilder } from './operations/manage_offer_builder';
 export { SetOptionsBuilder } from './operations/set_options_builder';
+export { PayoutOpBuilder } from './operations/payout_builder';
 export { ManageExternalSystemAccountIdPoolEntryBuilder } from './operations/manage_external_system_account_id_pool_entry_builder';
 export { BindExternalSystemAccountIdBuilder } from './operations/bind_external_system_account_id_builder';
 export {CreateAMLRequestBuilder} from "./operations/create_aml_request_builder";
@@ -32,6 +33,10 @@ export { PaymentV2Builder } from "./operations/payment_v2_builder";
 export { ManageSaleBuilder } from "./operations/manage_sale";
 export { ManageLimitsBuilder } from "./operations/manage_limits_builder";
 export { CreateManageLimitsRequestBuilder } from "./operations/create_manage_limits_request_builder";
+export { ManageInvoiceRequestBuilder } from "./operations/manage_invoice_request_builder";
+export { ManageContractRequestBuilder } from "./operations/manage_contract_request_builder";
+export { ManageContractBuilder } from "./operations/manage_contract_builder";
+export { BaseOperation } from "./operations/base_operation";
 
 export * from "./strkey";
 
