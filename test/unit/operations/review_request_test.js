@@ -105,7 +105,6 @@ describe('ReviewRequest', function () {
             reason: "Something is invalid",
             tasksToAdd: 0,
             tasksToRemove: 4,
-            externalDetails: {details: 'All right'}
         }
         let op = StellarBase.ReviewRequestBuilder.reviewTwoStepWithdrawRequest(opts);
         var xdr = op.toXDR("hex");

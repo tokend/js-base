@@ -35,6 +35,10 @@ import { CreateManageLimitsRequestBuilder } from "./operations/create_manage_lim
 import { ManageInvoiceRequestBuilder } from "./operations/manage_invoice_request_builder";
 import { ManageContractRequestBuilder } from "./operations/manage_contract_request_builder";
 import { ManageContractBuilder } from "./operations/manage_contract_builder";
+import {ManageInvestmentTokenSaleCreationRequestBuilder} from "./operations/manage_investment_token_sale_creation_request";
+import {CreateInvestmentTokenSaleParticipationBuilder} from "./operations/create_investment_token_sale_participation";
+import {ManageSettlementOptionBuilder} from "./operations/manage_settlement_option_builder";
+import { PerformSettlementBuilder } from "./operations/perform_settlement_builder";
 
 export class Operation extends BaseOperation {
 
@@ -637,9 +641,23 @@ export class Operation extends BaseOperation {
             case xdr.OperationType.cancelSaleRequest():
                 SaleRequestBuilder.cancelSaleCreationRequestToObject(result, attrs);
                 break;
+            case xdr.OperationType.manageInvestmentTokenSaleCreationRequest():
+                ManageInvestmentTokenSaleCreationRequestBuilder
+                    .manageITSaleCreationRequestOpToObject(result, attrs);
+                break;
+            case xdr.OperationType.createInvestmentTokenSaleParticipation():
+                CreateInvestmentTokenSaleParticipationBuilder
+                    .createITSaleParticipationOpToObject(result, attrs);
+                break;
+            case xdr.OperationType.manageSettlementOption():
+                ManageSettlementOptionBuilder.manageSettlementOptionOpToObject(
+                    result, attrs);
+                break;
+            case xdr.OperationType.performSettlement():
+                PerformSettlementBuilder.performSettlementOpToObject(result, attrs);
+                break;
             default:
                 throw new Error("Unknown operation");
-
         }
         return result;
     }

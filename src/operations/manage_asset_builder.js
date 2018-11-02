@@ -26,6 +26,7 @@ export class ManageAssetBuilder {
      * @param {string} opts.details.terms - Asset terms
      * @param {string} opts.details.terms.type - Content type of terms document
      * @param {string} opts.details.terms.name - Name of terms document
+     * @param {number|string} opts.expirationDate - Expiration date of the asset
      *
      * @param {string} [opts.source] - The source account for the payment. Defaults to the transaction's source account.
      *
@@ -56,7 +57,12 @@ export class ManageAssetBuilder {
 
         attrs.initialPreissuedAmount = BaseOperation._toUnsignedXDRAmount(opts.initialPreissuedAmount);
 
-        attrs.ext = new xdr.AssetCreationRequestExt(xdr.LedgerVersion.emptyVersion());
+        if (!isUndefined(opts.expirationDate)) {
+            attrs.ext = new xdr.AssetCreationRequestExt.addExpirationDateToAsset(
+                UnsignedHyper.fromString(opts.expirationDate));
+        } else {
+            attrs.ext = new xdr.AssetCreationRequestExt(xdr.LedgerVersion.emptyVersion());
+        }
 
         let assetCreationRequest = new xdr.AssetCreationRequest(attrs);
         return ManageAssetBuilder._createManageAssetOp(opts, new xdr.ManageAssetOpRequest.createAssetCreationRequest(assetCreationRequest));
@@ -230,6 +236,11 @@ export class ManageAssetBuilder {
                     result.maxIssuanceAmount = BaseOperation._fromXDRAmount(request.maxIssuanceAmount());
                     result.initialPreissuedAmount = BaseOperation._fromXDRAmount(request.initialPreissuedAmount());
                     result.details = JSON.parse(request.details());
+                    switch (request.ext().switch()) {
+                        case xdr.LedgerVersion.addExpirationDateToAsset(): {
+                            result.expirationDate = request.ext().expirationDate().toString();
+                        }
+                    }
                     break;
                 }
             case xdr.ManageAssetAction.createAssetUpdateRequest():
