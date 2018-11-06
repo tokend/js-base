@@ -438,7 +438,7 @@ var StellarBase =
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	// Automatically generated on 2018-11-06T16:22:24+02:00
+	// Automatically generated on 2018-11-06T20:11:27+02:00
 	// DO NOT EDIT or your changes may be overwritten
 	/* jshint maxstatements:2147483647  */ /* jshint esnext:true  */"use strict";Object.defineProperty(exports,"__esModule",{value:true});function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj["default"] = obj;return newObj;}}var _jsXdr=__webpack_require__(3);var XDR=_interopRequireWildcard(_jsXdr);var types=XDR.config(function(xdr){ // === xdr source ============================================================
 	//
@@ -3227,11 +3227,12 @@ var StellarBase =
 	//       ADD_CAPITAL_DEPLOYMENT_FEE_TYPE = 48,
 	//       ADD_TRANSACTION_FEE = 49,
 	//       ADD_DEFAULT_ISSUANCE_TASKS = 50,
+	//       EXTEND_REVIEW_ATOMIC_SWAP_REQUEST_RESULT = 51,
 	//       REPLACE_ACCOUNT_TYPES_WITH_POLICIES = 999999 // do not use it yet, there are features to be improved
 	//   };
 	//
 	// ===========================================================================
-	xdr["enum"]("LedgerVersion",{emptyVersion:0,passExternalSysAccIdInCreateAcc:1,detailedLedgerChange:2,newSignerType:3,typedSale:4,uniqueBalanceCreation:5,assetPreissuerMigration:6,assetPreissuerMigrated:7,useKycLevel:8,errorOnNonZeroTasksToRemoveInRejectKyc:9,allowAccountManagerToChangeKyc:10,changeAssetIssuerBadAuthExtraFixed:11,autoCreateCommissionBalanceOnTransfer:12,allowRejectRequestOfBlockedRequestor:13,assetUpdateCheckReferenceExist:14,crossAssetFee:15,usePaymentV2:16,allowSyndicateToUpdateKyc:17,doNotBuildAccountIfVersionEqualsOrGreater:18,allowToSpecifyRequiredBaseAssetAmountForHardCap:19,kycRule:20,allowToCreateSeveralSale:21,keyValuePoolEntryExpiresAt:22,keyValueUpdate:23,allowToCancelSaleParticipWithoutSpecifingBalance:24,detailsMaxLengthExtended:25,allowMasterToManageSale:26,useSaleAnte:27,fixAssetPairsCreationInSaleCreation:28,statableSale:29,createOnlyStatisticsV2:30,limitsUpdateRequestDeprecatedDocumentHash:31,fixPaymentV2Fee:32,addSaleIdReviewRequestResult:33,fixSetSaleStateAndCheckSaleStateOp:34,fixUpdateMaxIssuance:35,allowCloseSaleWithNonZeroBalance:36,allowToUpdateVotingSalesAsPromotion:37,allowToIssueAfterSale:38,fixPaymentV2SendToSelf:39,fixPaymentV2DestAccountNotFound:40,fixCreateKycRequestAutoApprove:41,addTasksToReviewableRequest:42,useOnlyPaymentV2:43,addReviewInvoiceRequestPaymentResponse:44,addContractIdReviewRequestResult:45,allowToUpdateAndRejectLimitsUpdateRequest:46,addCustomerDetailsToContract:47,addCapitalDeploymentFeeType:48,addTransactionFee:49,addDefaultIssuanceTask:50,replaceAccountTypesWithPolicy:999999}); // === xdr source ============================================================
+	xdr["enum"]("LedgerVersion",{emptyVersion:0,passExternalSysAccIdInCreateAcc:1,detailedLedgerChange:2,newSignerType:3,typedSale:4,uniqueBalanceCreation:5,assetPreissuerMigration:6,assetPreissuerMigrated:7,useKycLevel:8,errorOnNonZeroTasksToRemoveInRejectKyc:9,allowAccountManagerToChangeKyc:10,changeAssetIssuerBadAuthExtraFixed:11,autoCreateCommissionBalanceOnTransfer:12,allowRejectRequestOfBlockedRequestor:13,assetUpdateCheckReferenceExist:14,crossAssetFee:15,usePaymentV2:16,allowSyndicateToUpdateKyc:17,doNotBuildAccountIfVersionEqualsOrGreater:18,allowToSpecifyRequiredBaseAssetAmountForHardCap:19,kycRule:20,allowToCreateSeveralSale:21,keyValuePoolEntryExpiresAt:22,keyValueUpdate:23,allowToCancelSaleParticipWithoutSpecifingBalance:24,detailsMaxLengthExtended:25,allowMasterToManageSale:26,useSaleAnte:27,fixAssetPairsCreationInSaleCreation:28,statableSale:29,createOnlyStatisticsV2:30,limitsUpdateRequestDeprecatedDocumentHash:31,fixPaymentV2Fee:32,addSaleIdReviewRequestResult:33,fixSetSaleStateAndCheckSaleStateOp:34,fixUpdateMaxIssuance:35,allowCloseSaleWithNonZeroBalance:36,allowToUpdateVotingSalesAsPromotion:37,allowToIssueAfterSale:38,fixPaymentV2SendToSelf:39,fixPaymentV2DestAccountNotFound:40,fixCreateKycRequestAutoApprove:41,addTasksToReviewableRequest:42,useOnlyPaymentV2:43,addReviewInvoiceRequestPaymentResponse:44,addContractIdReviewRequestResult:45,allowToUpdateAndRejectLimitsUpdateRequest:46,addCustomerDetailsToContract:47,addCapitalDeploymentFeeType:48,addTransactionFee:49,addDefaultIssuanceTask:50,extendReviewAtomicSwapRequestResult:51,replaceAccountTypesWithPolicy:999999}); // === xdr source ============================================================
 	//
 	//   typedef opaque Signature<64>;
 	//
@@ -4715,6 +4716,38 @@ var StellarBase =
 	// ===========================================================================
 	xdr.struct("ASwapBidExtended",[["bidId",xdr.lookup("Uint64")],["ext",xdr.lookup("ASwapBidExtendedExt")]]); // === xdr source ============================================================
 	//
+	//   union switch (LedgerVersion v)
+	//       {
+	//       case EMPTY_VERSION:
+	//           void;
+	//       }
+	//
+	// ===========================================================================
+	xdr.union("ASwapExtendedExt",{switchOn:xdr.lookup("LedgerVersion"),switchName:"v",switches:[["emptyVersion",xdr["void"]()]],arms:{}}); // === xdr source ============================================================
+	//
+	//   struct ASwapExtended
+	//   {
+	//       uint64 bidID;
+	//       AccountID bidOwnerID;
+	//       AccountID purchaserID;
+	//       AssetCode baseAsset;
+	//       AssetCode quoteAsset;
+	//       uint64 baseAmount;
+	//       uint64 quoteAmount;
+	//       uint64 price;
+	//   
+	//       // Reserved for future use
+	//       union switch (LedgerVersion v)
+	//       {
+	//       case EMPTY_VERSION:
+	//           void;
+	//       }
+	//       ext;
+	//   };
+	//
+	// ===========================================================================
+	xdr.struct("ASwapExtended",[["bidId",xdr.lookup("Uint64")],["bidOwnerId",xdr.lookup("AccountId")],["purchaserId",xdr.lookup("AccountId")],["baseAsset",xdr.lookup("AssetCode")],["quoteAsset",xdr.lookup("AssetCode")],["baseAmount",xdr.lookup("Uint64")],["quoteAmount",xdr.lookup("Uint64")],["price",xdr.lookup("Uint64")],["ext",xdr.lookup("ASwapExtendedExt")]]); // === xdr source ============================================================
+	//
 	//   union switch(ReviewableRequestType requestType) {
 	//       case SALE:
 	//           SaleExtended saleExtended;
@@ -4722,10 +4755,12 @@ var StellarBase =
 	//           void;
 	//       case CREATE_ATOMIC_SWAP_BID:
 	//           ASwapBidExtended aSwapBidExtended;
+	//       case ATOMIC_SWAP:
+	//           ASwapExtended aSwapExtended;
 	//       }
 	//
 	// ===========================================================================
-	xdr.union("ExtendedResultTypeExt",{switchOn:xdr.lookup("ReviewableRequestType"),switchName:"requestType",switches:[["sale","saleExtended"],["none",xdr["void"]()],["createAtomicSwapBid","aSwapBidExtended"]],arms:{saleExtended:xdr.lookup("SaleExtended"),aSwapBidExtended:xdr.lookup("ASwapBidExtended")}}); // === xdr source ============================================================
+	xdr.union("ExtendedResultTypeExt",{switchOn:xdr.lookup("ReviewableRequestType"),switchName:"requestType",switches:[["sale","saleExtended"],["none",xdr["void"]()],["createAtomicSwapBid","aSwapBidExtended"],["atomicSwap","aSwapExtended"]],arms:{saleExtended:xdr.lookup("SaleExtended"),aSwapBidExtended:xdr.lookup("ASwapBidExtended"),aSwapExtended:xdr.lookup("ASwapExtended")}}); // === xdr source ============================================================
 	//
 	//   union switch (LedgerVersion v)
 	//      {
@@ -4746,6 +4781,8 @@ var StellarBase =
 	//           void;
 	//       case CREATE_ATOMIC_SWAP_BID:
 	//           ASwapBidExtended aSwapBidExtended;
+	//       case ATOMIC_SWAP:
+	//           ASwapExtended aSwapExtended;
 	//       } typeExt;
 	//   
 	//      // Reserved for future use

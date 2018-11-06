@@ -1,4 +1,4 @@
-// Automatically generated on 2018-11-06T16:22:24+02:00
+// Automatically generated on 2018-11-06T20:11:27+02:00
 // DO NOT EDIT or your changes may be overwritten
 
 /* jshint maxstatements:2147483647  */
@@ -4557,6 +4557,7 @@ xdr.union("PublicKey", {
 //       ADD_CAPITAL_DEPLOYMENT_FEE_TYPE = 48,
 //       ADD_TRANSACTION_FEE = 49,
 //       ADD_DEFAULT_ISSUANCE_TASKS = 50,
+//       EXTEND_REVIEW_ATOMIC_SWAP_REQUEST_RESULT = 51,
 //       REPLACE_ACCOUNT_TYPES_WITH_POLICIES = 999999 // do not use it yet, there are features to be improved
 //   };
 //
@@ -4613,6 +4614,7 @@ xdr.enum("LedgerVersion", {
   addCapitalDeploymentFeeType: 48,
   addTransactionFee: 49,
   addDefaultIssuanceTask: 50,
+  extendReviewAtomicSwapRequestResult: 51,
   replaceAccountTypesWithPolicy: 999999,
 });
 
@@ -7027,6 +7029,60 @@ xdr.struct("ASwapBidExtended", [
 
 // === xdr source ============================================================
 //
+//   union switch (LedgerVersion v)
+//       {
+//       case EMPTY_VERSION:
+//           void;
+//       }
+//
+// ===========================================================================
+xdr.union("ASwapExtendedExt", {
+  switchOn: xdr.lookup("LedgerVersion"),
+  switchName: "v",
+  switches: [
+    ["emptyVersion", xdr.void()],
+  ],
+  arms: {
+  },
+});
+
+// === xdr source ============================================================
+//
+//   struct ASwapExtended
+//   {
+//       uint64 bidID;
+//       AccountID bidOwnerID;
+//       AccountID purchaserID;
+//       AssetCode baseAsset;
+//       AssetCode quoteAsset;
+//       uint64 baseAmount;
+//       uint64 quoteAmount;
+//       uint64 price;
+//   
+//       // Reserved for future use
+//       union switch (LedgerVersion v)
+//       {
+//       case EMPTY_VERSION:
+//           void;
+//       }
+//       ext;
+//   };
+//
+// ===========================================================================
+xdr.struct("ASwapExtended", [
+  ["bidId", xdr.lookup("Uint64")],
+  ["bidOwnerId", xdr.lookup("AccountId")],
+  ["purchaserId", xdr.lookup("AccountId")],
+  ["baseAsset", xdr.lookup("AssetCode")],
+  ["quoteAsset", xdr.lookup("AssetCode")],
+  ["baseAmount", xdr.lookup("Uint64")],
+  ["quoteAmount", xdr.lookup("Uint64")],
+  ["price", xdr.lookup("Uint64")],
+  ["ext", xdr.lookup("ASwapExtendedExt")],
+]);
+
+// === xdr source ============================================================
+//
 //   union switch(ReviewableRequestType requestType) {
 //       case SALE:
 //           SaleExtended saleExtended;
@@ -7034,6 +7090,8 @@ xdr.struct("ASwapBidExtended", [
 //           void;
 //       case CREATE_ATOMIC_SWAP_BID:
 //           ASwapBidExtended aSwapBidExtended;
+//       case ATOMIC_SWAP:
+//           ASwapExtended aSwapExtended;
 //       }
 //
 // ===========================================================================
@@ -7044,10 +7102,12 @@ xdr.union("ExtendedResultTypeExt", {
     ["sale", "saleExtended"],
     ["none", xdr.void()],
     ["createAtomicSwapBid", "aSwapBidExtended"],
+    ["atomicSwap", "aSwapExtended"],
   ],
   arms: {
     saleExtended: xdr.lookup("SaleExtended"),
     aSwapBidExtended: xdr.lookup("ASwapBidExtended"),
+    aSwapExtended: xdr.lookup("ASwapExtended"),
   },
 });
 
@@ -7082,6 +7142,8 @@ xdr.union("ExtendedResultExt", {
 //           void;
 //       case CREATE_ATOMIC_SWAP_BID:
 //           ASwapBidExtended aSwapBidExtended;
+//       case ATOMIC_SWAP:
+//           ASwapExtended aSwapExtended;
 //       } typeExt;
 //   
 //      // Reserved for future use
