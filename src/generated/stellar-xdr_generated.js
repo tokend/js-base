@@ -1,4 +1,4 @@
-// Automatically generated on 2018-11-06T20:11:27+02:00
+// Automatically generated on 2018-11-07T17:28:04+02:00
 // DO NOT EDIT or your changes may be overwritten
 
 /* jshint maxstatements:2147483647  */
@@ -7058,6 +7058,8 @@ xdr.union("ASwapExtendedExt", {
 //       uint64 baseAmount;
 //       uint64 quoteAmount;
 //       uint64 price;
+//       BalanceID bidOwnerBaseBalanceID;
+//       BalanceID purchaserBaseBalanceID;
 //   
 //       // Reserved for future use
 //       union switch (LedgerVersion v)
@@ -7078,6 +7080,8 @@ xdr.struct("ASwapExtended", [
   ["baseAmount", xdr.lookup("Uint64")],
   ["quoteAmount", xdr.lookup("Uint64")],
   ["price", xdr.lookup("Uint64")],
+  ["bidOwnerBaseBalanceId", xdr.lookup("BalanceId")],
+  ["purchaserBaseBalanceId", xdr.lookup("BalanceId")],
   ["ext", xdr.lookup("ASwapExtendedExt")],
 ]);
 

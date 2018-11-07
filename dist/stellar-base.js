@@ -438,7 +438,7 @@ var StellarBase =
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	// Automatically generated on 2018-11-06T20:11:27+02:00
+	// Automatically generated on 2018-11-07T17:28:04+02:00
 	// DO NOT EDIT or your changes may be overwritten
 	/* jshint maxstatements:2147483647  */ /* jshint esnext:true  */"use strict";Object.defineProperty(exports,"__esModule",{value:true});function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj["default"] = obj;return newObj;}}var _jsXdr=__webpack_require__(3);var XDR=_interopRequireWildcard(_jsXdr);var types=XDR.config(function(xdr){ // === xdr source ============================================================
 	//
@@ -4735,6 +4735,8 @@ var StellarBase =
 	//       uint64 baseAmount;
 	//       uint64 quoteAmount;
 	//       uint64 price;
+	//       BalanceID bidOwnerBaseBalanceID;
+	//       BalanceID purchaserBaseBalanceID;
 	//   
 	//       // Reserved for future use
 	//       union switch (LedgerVersion v)
@@ -4746,7 +4748,7 @@ var StellarBase =
 	//   };
 	//
 	// ===========================================================================
-	xdr.struct("ASwapExtended",[["bidId",xdr.lookup("Uint64")],["bidOwnerId",xdr.lookup("AccountId")],["purchaserId",xdr.lookup("AccountId")],["baseAsset",xdr.lookup("AssetCode")],["quoteAsset",xdr.lookup("AssetCode")],["baseAmount",xdr.lookup("Uint64")],["quoteAmount",xdr.lookup("Uint64")],["price",xdr.lookup("Uint64")],["ext",xdr.lookup("ASwapExtendedExt")]]); // === xdr source ============================================================
+	xdr.struct("ASwapExtended",[["bidId",xdr.lookup("Uint64")],["bidOwnerId",xdr.lookup("AccountId")],["purchaserId",xdr.lookup("AccountId")],["baseAsset",xdr.lookup("AssetCode")],["quoteAsset",xdr.lookup("AssetCode")],["baseAmount",xdr.lookup("Uint64")],["quoteAmount",xdr.lookup("Uint64")],["price",xdr.lookup("Uint64")],["bidOwnerBaseBalanceId",xdr.lookup("BalanceId")],["purchaserBaseBalanceId",xdr.lookup("BalanceId")],["ext",xdr.lookup("ASwapExtendedExt")]]); // === xdr source ============================================================
 	//
 	//   union switch(ReviewableRequestType requestType) {
 	//       case SALE:
