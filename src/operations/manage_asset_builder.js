@@ -16,6 +16,7 @@ export class ManageAssetBuilder {
      * @param {string} opts.maxIssuanceAmount - Max amount can be issued of that asset
      * @param {number} opts.policies - Asset policies
      * @param {string} opts.initialPreissuedAmount - Amount of pre issued tokens available after creation of the asset
+     * @param {string} opts.trailingDigitsCount - allowed count of digits after point, max 6
      *
      * @param {object} opts.details - Additional details about asset
      * @param {string} opts.details.name - Name of the asset
@@ -53,10 +54,12 @@ export class ManageAssetBuilder {
         if (!BaseOperation.isValidAmount(opts.initialPreissuedAmount, true)) {
             throw new Error("opts.initialPreissuedAmount is invalid");
         }
-
         attrs.initialPreissuedAmount = BaseOperation._toUnsignedXDRAmount(opts.initialPreissuedAmount);
 
-        attrs.ext = new xdr.AssetCreationRequestExt(xdr.LedgerVersion.emptyVersion());
+        if (!BaseOperation.isValidAmount(opts.trailingDigitsCount, true, 6, 0)){
+            throw new Error("opts.trailingDigits is invalid");
+        }
+        attrs.ext = new xdr.AssetCreationRequestExt.addAssetBalancePrecision(Number(opts.trailingDigitsCount));
 
         let assetCreationRequest = new xdr.AssetCreationRequest(attrs);
         return ManageAssetBuilder._createManageAssetOp(opts, new xdr.ManageAssetOpRequest.createAssetCreationRequest(assetCreationRequest));
@@ -230,6 +233,7 @@ export class ManageAssetBuilder {
                     result.maxIssuanceAmount = BaseOperation._fromXDRAmount(request.maxIssuanceAmount());
                     result.initialPreissuedAmount = BaseOperation._fromXDRAmount(request.initialPreissuedAmount());
                     result.details = JSON.parse(request.details());
+                    result.trailingDigitsCount = request.ext().trailingDigitsCount().toString();
                     break;
                 }
             case xdr.ManageAssetAction.createAssetUpdateRequest():

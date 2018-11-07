@@ -13,7 +13,8 @@ describe('ManageAsset', function () {
                 initialPreissuedAmount: "12.14",
                 details: {
                     name: "USD Name",
-                }
+                },
+                trailingDigitsCount: "4"
             }
             let op = StellarBase.ManageAssetBuilder.assetCreationRequest(opts);
             var xdr = op.toXDR("hex");
@@ -28,6 +29,7 @@ describe('ManageAsset', function () {
             expect(obj.maxIssuanceAmount).to.be.equal(opts.maxIssuanceAmount);
             expect(obj.policies).to.be.equal(opts.policies);
             expect(obj.initialPreissuedAmount).to.be.equal(opts.initialPreissuedAmount);
+            expect(obj.trailingDigitsCount).to.be.equal(opts.trailingDigitsCount);
         });
     });
 
