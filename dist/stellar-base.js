@@ -50137,6 +50137,11 @@ var StellarBase =
 	                details: JSON.stringify(opts.details),
 	                ext: new _generatedStellarXdr_generated2['default'].InvestmentTokenSaleCreationRequestExt(_generatedStellarXdr_generated2['default'].LedgerVersion.emptyVersion())
 	            };
+
+	            if (!(0, _lodashIsUndefined2['default'])(opts.isProlongationAllowed)) {
+	                attrs.ext = new _generatedStellarXdr_generated2['default'].InvestmentTokenSaleCreationRequestExt.addProlongationFlagToItsale(opts.isProlongationAllowed);
+	            }
+
 	            if (!_base_operation.BaseOperation.isValidAsset(opts.baseAsset)) {
 	                throw new Error("base asset is invalid");
 	            }
@@ -50225,6 +50230,13 @@ var StellarBase =
 	                    price: _base_operation.BaseOperation._fromXDRAmount(request.quoteAssets()[i].price()),
 	                    asset: request.quoteAssets()[i].quoteAsset()
 	                });
+	            }
+
+	            switch (request.ext()['switch']()) {
+	                case _generatedStellarXdr_generated2['default'].LedgerVersion.addProlongationFlagToItsale():
+	                    {
+	                        result.isProlongationAllowed = request.ext().isProlongationAllowed();
+	                    }
 	            }
 	        }
 	    }, {

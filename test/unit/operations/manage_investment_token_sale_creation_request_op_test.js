@@ -25,6 +25,7 @@ describe('Manage ITSale Creation request op', function () {
                     asset: "USD",
                 },
             ],
+            isProlongationAllowed: false
         };
         let op = StellarBase.ManageInvestmentTokenSaleCreationRequestBuilder
             .createITSaleCreationRequest(opts);
@@ -39,6 +40,7 @@ describe('Manage ITSale Creation request op', function () {
         expect(opts.settlementStartDate).to.be.equal(obj.settlementStartDate);
         expect(opts.settlementEndDate).to.be.equal(obj.settlementEndDate);
         expect(opts.defaultRedemptionAsset).to.be.equal(obj.defaultRedemptionAsset);
+        expect(opts.isProlongationAllowed).to.be.equal(obj.isProlongationAllowed);
         expect(isEqual(opts.quoteAssets, obj.quoteAssets)).to.be.true;
         expect(isEqual(opts.details, obj.details)).to.be.true;
     });
