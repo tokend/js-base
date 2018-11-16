@@ -9,6 +9,9 @@ js-base is fork of [js-stellar-base](github.com/stellar/js-stellar-base)
 >
 > If you are using `js-base` in a browser you can ignore this. However, for production backend deployments you should definitely be using `ed25519`. If `ed25519` is successfully installed and working `StellarBase.FastSigning` variable will be equal `true`. Otherwise it will be `false`.
 
+## Updating XDR
+
+To generate or update XDR run `generateXDR.sh` with providing it branch name or commit hash of the needed XDR version.
 
 ## License
 js-stellar-base is licensed under an Apache-2.0 license. See the [LICENSE](./LICENSE) file for details.
