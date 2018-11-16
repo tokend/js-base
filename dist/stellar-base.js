@@ -420,9 +420,7 @@ var StellarBase =
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	// revision: ef016275cf87b8568192a7c9c404ded36856ddea
-	// branch:   feature/withdrawal_tasks
-	// Automatically generated on 2018-11-16T11:26:37+00:00
+	// Automatically generated on 2018-11-16T13:33:53+02:00
 	// DO NOT EDIT or your changes may be overwritten
 	/* jshint maxstatements:2147483647  */ /* jshint esnext:true  */"use strict";Object.defineProperty(exports,"__esModule",{value:true});function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj["default"] = obj;return newObj;}}var _jsXdr=__webpack_require__(3);var XDR=_interopRequireWildcard(_jsXdr);var types=XDR.config(function(xdr){ // === xdr source ============================================================
 	//
@@ -46086,6 +46084,8 @@ var StellarBase =
 	         * @param {string} opts.reason - Reject reason
 	         * @param {string} opts.externalDetails - External System details
 	         * @param {string} [opts.source] - The source account for the payment. Defaults to the transaction's source account.
+	         * @param {number|string} opts.tasksToAdd - new tasks for reviewable request to be accomplished before fulfill
+	         * @param {number|string} opts.tasksToRemove - tasks, which were done by the reviewer and should be removed
 	         * @returns {xdr.ReviewRequestOp}
 	         */
 	    }, {
@@ -47032,6 +47032,7 @@ var StellarBase =
 	         * @param {object} opts.externalDetails - External details needed for PSIM to process withdraw operation
 	         * @param {string} opts.destAsset - Asset in which specifed amount will be autoconverted
 	         * @param {string} opts.expectedDestAssetAmount - Expected dest asset amount
+	         * @param {number|string} opts.allTasks - Bitmask of all tasks which must be completed for the request approval
 	         * @param {string} [opts.source] - The source account for the payment. Defaults to the transaction's source account.
 	         * @returns {xdr.CreateWithdrawalRequestOp}
 	         */
@@ -47080,12 +47081,13 @@ var StellarBase =
 	            attrs.details = new _generatedStellarXdr_generated2['default'].WithdrawalRequestDetails.autoConversion(autoConversionDetails);
 	            attrs.ext = new _generatedStellarXdr_generated2['default'].WithdrawalRequestExt(_generatedStellarXdr_generated2['default'].LedgerVersion.emptyVersion());
 
+	            var rawAllTasks = _base_operation.BaseOperation._checkUnsignedIntValue("allTasks", opts.allTasks);
+
 	            attrs.preConfirmationDetails = "";
 	            var request = new _generatedStellarXdr_generated2['default'].WithdrawalRequest(attrs);
 	            var withdrawRequestOp = new _generatedStellarXdr_generated2['default'].CreateWithdrawalRequestOp({
 	                request: request,
-	                ext: new _generatedStellarXdr_generated2['default'].CreateWithdrawalRequestOpExt(_generatedStellarXdr_generated2['default'].LedgerVersion.emptyVersion())
-	            });
+	                ext: new _generatedStellarXdr_generated2['default'].CreateWithdrawalRequestOpExt.withdrawalTask(rawAllTasks) });
 	            var opAttributes = {};
 	            opAttributes.body = _generatedStellarXdr_generated2['default'].OperationBody.createWithdrawalRequest(withdrawRequestOp);
 	            _base_operation.BaseOperation.setSourceAccount(opAttributes, opts);
@@ -47109,6 +47111,13 @@ var StellarBase =
 	                    expectedAmount: _base_operation.BaseOperation._fromXDRAmount(request.details().autoConversion().expectedAmount())
 	                }
 	            };
+	            switch (attrs.ext()['switch']()) {
+	                case _generatedStellarXdr_generated2['default'].LedgerVersion.withdrawalTask():
+	                    {
+	                        result.allTasks = attrs.ext().allTasks();
+	                        break;
+	                    }
+	            }
 	        }
 	    }]);
 
