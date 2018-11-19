@@ -41,6 +41,7 @@ describe('ManageAsset', function () {
                 code: "USD",
                 policies: 12,
                 requestID: "0",
+                expirationDate: "1539597667",
             }
             let op = StellarBase.ManageAssetBuilder.assetUpdateRequest(opts);
             var xdr = op.toXDR("hex");
@@ -51,6 +52,7 @@ describe('ManageAsset', function () {
             expect(obj.requestType).to.be.equal("createAssetUpdateRequest");
             expect(obj.code).to.be.equal(opts.code);
             expect(obj.policies).to.be.equal(opts.policies);
+            expect(obj.expirationDate).to.be.equal(opts.expirationDate);
         });
     });
 

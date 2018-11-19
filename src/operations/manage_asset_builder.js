@@ -84,6 +84,7 @@ export class ManageAssetBuilder {
      * @param {string} opts.requestID - request ID, if 0 - creates new, updates otherwise
      * @param {string} opts.code - Asset code
      * @param {number} opts.policies - asset policies
+     * @param {string} opts.expirationDate - new expiration date of asset in seconds
      *
      * @param {object} opts.details - Additional details about asset
      * @param {string} opts.details.name - Name of the asset
@@ -100,7 +101,13 @@ export class ManageAssetBuilder {
      */
     static assetUpdateRequest(opts) {
         let attrs = ManageAssetBuilder._createUpdateAttrs(opts);
-        attrs.ext = new xdr.AssetUpdateRequestExt(xdr.LedgerVersion.emptyVersion());
+
+        if (isUndefined(opts.expirationDate)) {
+            throw new Error("opts.expirationDate is undefined");
+        }
+
+        attrs.ext = new xdr.AssetUpdateRequestExt.addExpirationDateToAsset(
+          UnsignedHyper.fromString(opts.expirationDate));
         let assetUpdateRequest = new xdr.AssetUpdateRequest(attrs);
 
         return ManageAssetBuilder._createManageAssetOp(opts, new xdr.ManageAssetOpRequest.createAssetUpdateRequest(assetUpdateRequest));
@@ -255,6 +262,7 @@ export class ManageAssetBuilder {
                     result.code = request.code();
                     result.policies = request.policies();
                     result.details = JSON.parse(request.details());
+                    result.expirationDate = request.ext().expirationDate().toString();
                     break;
                 }
             case xdr.ManageAssetAction.cancelAssetRequest():

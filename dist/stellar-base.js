@@ -456,13 +456,9 @@ var StellarBase =
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 	// revision: 4579c18afba76b788fc148b54ea0923682b14e2e
 	// branch:   ff
-	// Automatically generated on 2018-11-19T13:45:21+00:00
-=======
-	// Automatically generated on 2018-11-07T15:09:27+02:00
->>>>>>> feature/nondivisible_tokens
+	// Automatically generated on 2018-11-19T14:16:29+00:00
 	// DO NOT EDIT or your changes may be overwritten
 	/* jshint maxstatements:2147483647  */ /* jshint esnext:true  */"use strict";Object.defineProperty(exports,"__esModule",{value:true});function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj["default"] = obj;return newObj;}}var _jsXdr=__webpack_require__(3);var XDR=_interopRequireWildcard(_jsXdr);var types=XDR.config(function(xdr){ // === xdr source ============================================================
 	//
@@ -611,7 +607,6 @@ var StellarBase =
 	//           ManageContractOp manageContractOp;
 	//       case CANCEL_SALE_REQUEST:
 	//           CancelSaleCreationRequestOp cancelSaleCreationRequestOp;
-<<<<<<< HEAD
 	//       case MANAGE_INVESTMENT_TOKEN_SALE_CREATION_REQUEST:
 	//           ManageITSaleCreationRequestOp manageITSaleCreationRequestOp;
 	//       case CREATE_INVESTMENT_TOKEN_SALE_PARTICIPATION:
@@ -620,8 +615,6 @@ var StellarBase =
 	//           ManageSettlementOptionOp manageSettlementOptionOp;
 	//       case PERFORM_SETTLEMENT:
 	//           PerformSettlementOp performSettlementOp;
-=======
->>>>>>> feature/nondivisible_tokens
 	//       case MANAGE_ACCOUNT_ROLE:
 	//           ManageAccountRoleOp manageAccountRoleOp;
 	//       case MANAGE_ACCOUNT_ROLE_PERMISSION:
@@ -629,11 +622,7 @@ var StellarBase =
 	//       }
 	//
 	// ===========================================================================
-<<<<<<< HEAD
 	xdr.union("OperationBody",{switchOn:xdr.lookup("OperationType"),switchName:"type",switches:[["createAccount","createAccountOp"],["payment","paymentOp"],["setOption","setOptionsOp"],["createIssuanceRequest","createIssuanceRequestOp"],["setFee","setFeesOp"],["manageAccount","manageAccountOp"],["createWithdrawalRequest","createWithdrawalRequestOp"],["manageBalance","manageBalanceOp"],["manageAsset","manageAssetOp"],["createPreissuanceRequest","createPreIssuanceRequest"],["manageLimit","manageLimitsOp"],["directDebit","directDebitOp"],["manageAssetPair","manageAssetPairOp"],["manageOffer","manageOfferOp"],["manageInvoiceRequest","manageInvoiceRequestOp"],["reviewRequest","reviewRequestOp"],["createSaleRequest","createSaleCreationRequestOp"],["checkSaleState","checkSaleStateOp"],["payout","payoutOp"],["createAmlAlert","createAmlAlertRequestOp"],["manageKeyValue","manageKeyValueOp"],["createKycRequest","createUpdateKycRequestOp"],["manageExternalSystemAccountIdPoolEntry","manageExternalSystemAccountIdPoolEntryOp"],["bindExternalSystemAccountId","bindExternalSystemAccountIdOp"],["paymentV2","paymentOpV2"],["manageSale","manageSaleOp"],["createManageLimitsRequest","createManageLimitsRequestOp"],["manageContractRequest","manageContractRequestOp"],["manageContract","manageContractOp"],["cancelSaleRequest","cancelSaleCreationRequestOp"],["manageInvestmentTokenSaleCreationRequest","manageItSaleCreationRequestOp"],["createInvestmentTokenSaleParticipation","createItSaleParticipationOp"],["manageSettlementOption","manageSettlementOptionOp"],["performSettlement","performSettlementOp"],["manageAccountRole","manageAccountRoleOp"],["manageAccountRolePermission","manageAccountRolePermissionOp"]],arms:{createAccountOp:xdr.lookup("CreateAccountOp"),paymentOp:xdr.lookup("PaymentOp"),setOptionsOp:xdr.lookup("SetOptionsOp"),createIssuanceRequestOp:xdr.lookup("CreateIssuanceRequestOp"),setFeesOp:xdr.lookup("SetFeesOp"),manageAccountOp:xdr.lookup("ManageAccountOp"),createWithdrawalRequestOp:xdr.lookup("CreateWithdrawalRequestOp"),manageBalanceOp:xdr.lookup("ManageBalanceOp"),manageAssetOp:xdr.lookup("ManageAssetOp"),createPreIssuanceRequest:xdr.lookup("CreatePreIssuanceRequestOp"),manageLimitsOp:xdr.lookup("ManageLimitsOp"),directDebitOp:xdr.lookup("DirectDebitOp"),manageAssetPairOp:xdr.lookup("ManageAssetPairOp"),manageOfferOp:xdr.lookup("ManageOfferOp"),manageInvoiceRequestOp:xdr.lookup("ManageInvoiceRequestOp"),reviewRequestOp:xdr.lookup("ReviewRequestOp"),createSaleCreationRequestOp:xdr.lookup("CreateSaleCreationRequestOp"),checkSaleStateOp:xdr.lookup("CheckSaleStateOp"),payoutOp:xdr.lookup("PayoutOp"),createAmlAlertRequestOp:xdr.lookup("CreateAmlAlertRequestOp"),manageKeyValueOp:xdr.lookup("ManageKeyValueOp"),createUpdateKycRequestOp:xdr.lookup("CreateUpdateKycRequestOp"),manageExternalSystemAccountIdPoolEntryOp:xdr.lookup("ManageExternalSystemAccountIdPoolEntryOp"),bindExternalSystemAccountIdOp:xdr.lookup("BindExternalSystemAccountIdOp"),paymentOpV2:xdr.lookup("PaymentOpV2"),manageSaleOp:xdr.lookup("ManageSaleOp"),createManageLimitsRequestOp:xdr.lookup("CreateManageLimitsRequestOp"),manageContractRequestOp:xdr.lookup("ManageContractRequestOp"),manageContractOp:xdr.lookup("ManageContractOp"),cancelSaleCreationRequestOp:xdr.lookup("CancelSaleCreationRequestOp"),manageItSaleCreationRequestOp:xdr.lookup("ManageItSaleCreationRequestOp"),createItSaleParticipationOp:xdr.lookup("CreateItSaleParticipationOp"),manageSettlementOptionOp:xdr.lookup("ManageSettlementOptionOp"),performSettlementOp:xdr.lookup("PerformSettlementOp"),manageAccountRoleOp:xdr.lookup("ManageAccountRoleOp"),manageAccountRolePermissionOp:xdr.lookup("ManageAccountRolePermissionOp")}}); // === xdr source ============================================================
-=======
-	xdr.union("OperationBody",{switchOn:xdr.lookup("OperationType"),switchName:"type",switches:[["createAccount","createAccountOp"],["payment","paymentOp"],["setOption","setOptionsOp"],["createIssuanceRequest","createIssuanceRequestOp"],["setFee","setFeesOp"],["manageAccount","manageAccountOp"],["createWithdrawalRequest","createWithdrawalRequestOp"],["manageBalance","manageBalanceOp"],["manageAsset","manageAssetOp"],["createPreissuanceRequest","createPreIssuanceRequest"],["manageLimit","manageLimitsOp"],["directDebit","directDebitOp"],["manageAssetPair","manageAssetPairOp"],["manageOffer","manageOfferOp"],["manageInvoiceRequest","manageInvoiceRequestOp"],["reviewRequest","reviewRequestOp"],["createSaleRequest","createSaleCreationRequestOp"],["checkSaleState","checkSaleStateOp"],["payout","payoutOp"],["createAmlAlert","createAmlAlertRequestOp"],["manageKeyValue","manageKeyValueOp"],["createKycRequest","createUpdateKycRequestOp"],["manageExternalSystemAccountIdPoolEntry","manageExternalSystemAccountIdPoolEntryOp"],["bindExternalSystemAccountId","bindExternalSystemAccountIdOp"],["paymentV2","paymentOpV2"],["manageSale","manageSaleOp"],["createManageLimitsRequest","createManageLimitsRequestOp"],["manageContractRequest","manageContractRequestOp"],["manageContract","manageContractOp"],["cancelSaleRequest","cancelSaleCreationRequestOp"],["manageAccountRole","manageAccountRoleOp"],["manageAccountRolePermission","manageAccountRolePermissionOp"]],arms:{createAccountOp:xdr.lookup("CreateAccountOp"),paymentOp:xdr.lookup("PaymentOp"),setOptionsOp:xdr.lookup("SetOptionsOp"),createIssuanceRequestOp:xdr.lookup("CreateIssuanceRequestOp"),setFeesOp:xdr.lookup("SetFeesOp"),manageAccountOp:xdr.lookup("ManageAccountOp"),createWithdrawalRequestOp:xdr.lookup("CreateWithdrawalRequestOp"),manageBalanceOp:xdr.lookup("ManageBalanceOp"),manageAssetOp:xdr.lookup("ManageAssetOp"),createPreIssuanceRequest:xdr.lookup("CreatePreIssuanceRequestOp"),manageLimitsOp:xdr.lookup("ManageLimitsOp"),directDebitOp:xdr.lookup("DirectDebitOp"),manageAssetPairOp:xdr.lookup("ManageAssetPairOp"),manageOfferOp:xdr.lookup("ManageOfferOp"),manageInvoiceRequestOp:xdr.lookup("ManageInvoiceRequestOp"),reviewRequestOp:xdr.lookup("ReviewRequestOp"),createSaleCreationRequestOp:xdr.lookup("CreateSaleCreationRequestOp"),checkSaleStateOp:xdr.lookup("CheckSaleStateOp"),payoutOp:xdr.lookup("PayoutOp"),createAmlAlertRequestOp:xdr.lookup("CreateAmlAlertRequestOp"),manageKeyValueOp:xdr.lookup("ManageKeyValueOp"),createUpdateKycRequestOp:xdr.lookup("CreateUpdateKycRequestOp"),manageExternalSystemAccountIdPoolEntryOp:xdr.lookup("ManageExternalSystemAccountIdPoolEntryOp"),bindExternalSystemAccountIdOp:xdr.lookup("BindExternalSystemAccountIdOp"),paymentOpV2:xdr.lookup("PaymentOpV2"),manageSaleOp:xdr.lookup("ManageSaleOp"),createManageLimitsRequestOp:xdr.lookup("CreateManageLimitsRequestOp"),manageContractRequestOp:xdr.lookup("ManageContractRequestOp"),manageContractOp:xdr.lookup("ManageContractOp"),cancelSaleCreationRequestOp:xdr.lookup("CancelSaleCreationRequestOp"),manageAccountRoleOp:xdr.lookup("ManageAccountRoleOp"),manageAccountRolePermissionOp:xdr.lookup("ManageAccountRolePermissionOp")}}); // === xdr source ============================================================
->>>>>>> feature/nondivisible_tokens
 	//
 	//   struct Operation
 	//   {
@@ -704,7 +693,6 @@ var StellarBase =
 	//           ManageContractOp manageContractOp;
 	//       case CANCEL_SALE_REQUEST:
 	//           CancelSaleCreationRequestOp cancelSaleCreationRequestOp;
-<<<<<<< HEAD
 	//       case MANAGE_INVESTMENT_TOKEN_SALE_CREATION_REQUEST:
 	//           ManageITSaleCreationRequestOp manageITSaleCreationRequestOp;
 	//       case CREATE_INVESTMENT_TOKEN_SALE_PARTICIPATION:
@@ -713,8 +701,6 @@ var StellarBase =
 	//           ManageSettlementOptionOp manageSettlementOptionOp;
 	//       case PERFORM_SETTLEMENT:
 	//           PerformSettlementOp performSettlementOp;
-=======
->>>>>>> feature/nondivisible_tokens
 	//       case MANAGE_ACCOUNT_ROLE:
 	//           ManageAccountRoleOp manageAccountRoleOp;
 	//       case MANAGE_ACCOUNT_ROLE_PERMISSION:
@@ -892,7 +878,6 @@ var StellarBase =
 	//           ManageContractResult manageContractResult;
 	//       case CANCEL_SALE_REQUEST:
 	//           CancelSaleCreationRequestResult cancelSaleCreationRequestResult;
-<<<<<<< HEAD
 	//       case MANAGE_INVESTMENT_TOKEN_SALE_CREATION_REQUEST:
 	//           ManageITSaleCreationRequestResult manageITSaleCreationRequestResult;
 	//       case CREATE_INVESTMENT_TOKEN_SALE_PARTICIPATION:
@@ -901,8 +886,6 @@ var StellarBase =
 	//           ManageSettlementOptionResult manageSettlementOptionResult;
 	//       case PERFORM_SETTLEMENT:
 	//           PerformSettlementResult performSettlementResult;
-=======
->>>>>>> feature/nondivisible_tokens
 	//       case MANAGE_ACCOUNT_ROLE:
 	//           ManageAccountRoleResult manageAccountRoleResult;
 	//       case MANAGE_ACCOUNT_ROLE_PERMISSION:
@@ -910,11 +893,7 @@ var StellarBase =
 	//       }
 	//
 	// ===========================================================================
-<<<<<<< HEAD
 	xdr.union("OperationResultTr",{switchOn:xdr.lookup("OperationType"),switchName:"type",switches:[["createAccount","createAccountResult"],["payment","paymentResult"],["setOption","setOptionsResult"],["createIssuanceRequest","createIssuanceRequestResult"],["setFee","setFeesResult"],["manageAccount","manageAccountResult"],["createWithdrawalRequest","createWithdrawalRequestResult"],["manageBalance","manageBalanceResult"],["manageAsset","manageAssetResult"],["createPreissuanceRequest","createPreIssuanceRequestResult"],["manageLimit","manageLimitsResult"],["directDebit","directDebitResult"],["manageAssetPair","manageAssetPairResult"],["manageOffer","manageOfferResult"],["manageInvoiceRequest","manageInvoiceRequestResult"],["reviewRequest","reviewRequestResult"],["createSaleRequest","createSaleCreationRequestResult"],["checkSaleState","checkSaleStateResult"],["payout","payoutResult"],["createAmlAlert","createAmlAlertRequestResult"],["manageKeyValue","manageKeyValueResult"],["createKycRequest","createUpdateKycRequestResult"],["manageExternalSystemAccountIdPoolEntry","manageExternalSystemAccountIdPoolEntryResult"],["bindExternalSystemAccountId","bindExternalSystemAccountIdResult"],["paymentV2","paymentV2Result"],["manageSale","manageSaleResult"],["createManageLimitsRequest","createManageLimitsRequestResult"],["manageContractRequest","manageContractRequestResult"],["manageContract","manageContractResult"],["cancelSaleRequest","cancelSaleCreationRequestResult"],["manageInvestmentTokenSaleCreationRequest","manageItSaleCreationRequestResult"],["createInvestmentTokenSaleParticipation","createItSaleParticipationResult"],["manageSettlementOption","manageSettlementOptionResult"],["performSettlement","performSettlementResult"],["manageAccountRole","manageAccountRoleResult"],["manageAccountRolePermission","manageAccountRolePermissionResult"]],arms:{createAccountResult:xdr.lookup("CreateAccountResult"),paymentResult:xdr.lookup("PaymentResult"),setOptionsResult:xdr.lookup("SetOptionsResult"),createIssuanceRequestResult:xdr.lookup("CreateIssuanceRequestResult"),setFeesResult:xdr.lookup("SetFeesResult"),manageAccountResult:xdr.lookup("ManageAccountResult"),createWithdrawalRequestResult:xdr.lookup("CreateWithdrawalRequestResult"),manageBalanceResult:xdr.lookup("ManageBalanceResult"),manageAssetResult:xdr.lookup("ManageAssetResult"),createPreIssuanceRequestResult:xdr.lookup("CreatePreIssuanceRequestResult"),manageLimitsResult:xdr.lookup("ManageLimitsResult"),directDebitResult:xdr.lookup("DirectDebitResult"),manageAssetPairResult:xdr.lookup("ManageAssetPairResult"),manageOfferResult:xdr.lookup("ManageOfferResult"),manageInvoiceRequestResult:xdr.lookup("ManageInvoiceRequestResult"),reviewRequestResult:xdr.lookup("ReviewRequestResult"),createSaleCreationRequestResult:xdr.lookup("CreateSaleCreationRequestResult"),checkSaleStateResult:xdr.lookup("CheckSaleStateResult"),payoutResult:xdr.lookup("PayoutResult"),createAmlAlertRequestResult:xdr.lookup("CreateAmlAlertRequestResult"),manageKeyValueResult:xdr.lookup("ManageKeyValueResult"),createUpdateKycRequestResult:xdr.lookup("CreateUpdateKycRequestResult"),manageExternalSystemAccountIdPoolEntryResult:xdr.lookup("ManageExternalSystemAccountIdPoolEntryResult"),bindExternalSystemAccountIdResult:xdr.lookup("BindExternalSystemAccountIdResult"),paymentV2Result:xdr.lookup("PaymentV2Result"),manageSaleResult:xdr.lookup("ManageSaleResult"),createManageLimitsRequestResult:xdr.lookup("CreateManageLimitsRequestResult"),manageContractRequestResult:xdr.lookup("ManageContractRequestResult"),manageContractResult:xdr.lookup("ManageContractResult"),cancelSaleCreationRequestResult:xdr.lookup("CancelSaleCreationRequestResult"),manageItSaleCreationRequestResult:xdr.lookup("ManageItSaleCreationRequestResult"),createItSaleParticipationResult:xdr.lookup("CreateItSaleParticipationResult"),manageSettlementOptionResult:xdr.lookup("ManageSettlementOptionResult"),performSettlementResult:xdr.lookup("PerformSettlementResult"),manageAccountRoleResult:xdr.lookup("ManageAccountRoleResult"),manageAccountRolePermissionResult:xdr.lookup("ManageAccountRolePermissionResult")}}); // === xdr source ============================================================
-=======
-	xdr.union("OperationResultTr",{switchOn:xdr.lookup("OperationType"),switchName:"type",switches:[["createAccount","createAccountResult"],["payment","paymentResult"],["setOption","setOptionsResult"],["createIssuanceRequest","createIssuanceRequestResult"],["setFee","setFeesResult"],["manageAccount","manageAccountResult"],["createWithdrawalRequest","createWithdrawalRequestResult"],["manageBalance","manageBalanceResult"],["manageAsset","manageAssetResult"],["createPreissuanceRequest","createPreIssuanceRequestResult"],["manageLimit","manageLimitsResult"],["directDebit","directDebitResult"],["manageAssetPair","manageAssetPairResult"],["manageOffer","manageOfferResult"],["manageInvoiceRequest","manageInvoiceRequestResult"],["reviewRequest","reviewRequestResult"],["createSaleRequest","createSaleCreationRequestResult"],["checkSaleState","checkSaleStateResult"],["payout","payoutResult"],["createAmlAlert","createAmlAlertRequestResult"],["manageKeyValue","manageKeyValueResult"],["createKycRequest","createUpdateKycRequestResult"],["manageExternalSystemAccountIdPoolEntry","manageExternalSystemAccountIdPoolEntryResult"],["bindExternalSystemAccountId","bindExternalSystemAccountIdResult"],["paymentV2","paymentV2Result"],["manageSale","manageSaleResult"],["createManageLimitsRequest","createManageLimitsRequestResult"],["manageContractRequest","manageContractRequestResult"],["manageContract","manageContractResult"],["cancelSaleRequest","cancelSaleCreationRequestResult"],["manageAccountRole","manageAccountRoleResult"],["manageAccountRolePermission","manageAccountRolePermissionResult"]],arms:{createAccountResult:xdr.lookup("CreateAccountResult"),paymentResult:xdr.lookup("PaymentResult"),setOptionsResult:xdr.lookup("SetOptionsResult"),createIssuanceRequestResult:xdr.lookup("CreateIssuanceRequestResult"),setFeesResult:xdr.lookup("SetFeesResult"),manageAccountResult:xdr.lookup("ManageAccountResult"),createWithdrawalRequestResult:xdr.lookup("CreateWithdrawalRequestResult"),manageBalanceResult:xdr.lookup("ManageBalanceResult"),manageAssetResult:xdr.lookup("ManageAssetResult"),createPreIssuanceRequestResult:xdr.lookup("CreatePreIssuanceRequestResult"),manageLimitsResult:xdr.lookup("ManageLimitsResult"),directDebitResult:xdr.lookup("DirectDebitResult"),manageAssetPairResult:xdr.lookup("ManageAssetPairResult"),manageOfferResult:xdr.lookup("ManageOfferResult"),manageInvoiceRequestResult:xdr.lookup("ManageInvoiceRequestResult"),reviewRequestResult:xdr.lookup("ReviewRequestResult"),createSaleCreationRequestResult:xdr.lookup("CreateSaleCreationRequestResult"),checkSaleStateResult:xdr.lookup("CheckSaleStateResult"),payoutResult:xdr.lookup("PayoutResult"),createAmlAlertRequestResult:xdr.lookup("CreateAmlAlertRequestResult"),manageKeyValueResult:xdr.lookup("ManageKeyValueResult"),createUpdateKycRequestResult:xdr.lookup("CreateUpdateKycRequestResult"),manageExternalSystemAccountIdPoolEntryResult:xdr.lookup("ManageExternalSystemAccountIdPoolEntryResult"),bindExternalSystemAccountIdResult:xdr.lookup("BindExternalSystemAccountIdResult"),paymentV2Result:xdr.lookup("PaymentV2Result"),manageSaleResult:xdr.lookup("ManageSaleResult"),createManageLimitsRequestResult:xdr.lookup("CreateManageLimitsRequestResult"),manageContractRequestResult:xdr.lookup("ManageContractRequestResult"),manageContractResult:xdr.lookup("ManageContractResult"),cancelSaleCreationRequestResult:xdr.lookup("CancelSaleCreationRequestResult"),manageAccountRoleResult:xdr.lookup("ManageAccountRoleResult"),manageAccountRolePermissionResult:xdr.lookup("ManageAccountRolePermissionResult")}}); // === xdr source ============================================================
->>>>>>> feature/nondivisible_tokens
 	//
 	//   union OperationResult switch (OperationResultCode code)
 	//   {
@@ -981,7 +960,6 @@ var StellarBase =
 	//           ManageContractResult manageContractResult;
 	//       case CANCEL_SALE_REQUEST:
 	//           CancelSaleCreationRequestResult cancelSaleCreationRequestResult;
-<<<<<<< HEAD
 	//       case MANAGE_INVESTMENT_TOKEN_SALE_CREATION_REQUEST:
 	//           ManageITSaleCreationRequestResult manageITSaleCreationRequestResult;
 	//       case CREATE_INVESTMENT_TOKEN_SALE_PARTICIPATION:
@@ -990,8 +968,6 @@ var StellarBase =
 	//           ManageSettlementOptionResult manageSettlementOptionResult;
 	//       case PERFORM_SETTLEMENT:
 	//           PerformSettlementResult performSettlementResult;
-=======
->>>>>>> feature/nondivisible_tokens
 	//       case MANAGE_ACCOUNT_ROLE:
 	//           ManageAccountRoleResult manageAccountRoleResult;
 	//       case MANAGE_ACCOUNT_ROLE_PERMISSION:
@@ -3087,7 +3063,6 @@ var StellarBase =
 	//   	STATS_ASSET_ALREADY_EXISTS = -10, // statistics quote asset already exists
 	//   	INITIAL_PREISSUED_EXCEEDS_MAX_ISSUANCE = -11, // initial pre issued amount exceeds max issuance amount
 	//   	INVALID_DETAILS = -12, // details must be a valid json
-<<<<<<< HEAD
 	//   	INVALID_EXPIRATION_DATE = -13, // expiration date is less or equal to ledger close time
 	//   	ASSET_EXPIRED = -14,
 	//       INVALID_TRAILING_DIGITS_COUNT = -15,          // invalid number of trailing digits
@@ -3097,13 +3072,6 @@ var StellarBase =
 	//
 	// ===========================================================================
 	xdr["enum"]("ManageAssetResultCode",{success:0,requestNotFound:-1,assetAlreadyExist:-3,invalidMaxIssuanceAmount:-4,invalidCode:-5,invalidPolicy:-7,assetNotFound:-8,requestAlreadyExist:-9,statsAssetAlreadyExist:-10,initialPreissuedExceedsMaxIssuance:-11,invalidDetail:-12,invalidExpirationDate:-13,assetExpired:-14,invalidTrailingDigitsCount:-15,invalidPreissuedAmountPrecision:-16,invalidMaxIssuanceAmountPrecision:-17}); // === xdr source ============================================================
-=======
-	//   	INVALID_TRAILING_DIGITS_COUNT = 13 // number of trailing digits must be less than 7
-	//   };
-	//
-	// ===========================================================================
-	xdr["enum"]("ManageAssetResultCode",{success:0,requestNotFound:-1,assetAlreadyExist:-3,invalidMaxIssuanceAmount:-4,invalidCode:-5,invalidPolicy:-7,assetNotFound:-8,requestAlreadyExist:-9,statsAssetAlreadyExist:-10,initialPreissuedExceedsMaxIssuance:-11,invalidDetail:-12,invalidTrailingDigitsCount:13}); // === xdr source ============================================================
->>>>>>> feature/nondivisible_tokens
 	//
 	//   union switch (LedgerVersion v)
 	//       {
@@ -3468,7 +3436,6 @@ var StellarBase =
 	//       PENDING_STATISTICS = 24,
 	//       CONTRACT = 25,
 	//       ACCOUNT_ROLE = 26,
-<<<<<<< HEAD
 	//       ACCOUNT_ROLE_PERMISSION = 27,
 	//       INVESTMENT_TOKEN_SALE = 28,
 	//       SETTLEMENT_OPTION = 29
@@ -3476,13 +3443,6 @@ var StellarBase =
 	//
 	// ===========================================================================
 	xdr["enum"]("LedgerEntryType",{account:0,fee:2,balance:4,paymentRequest:5,asset:6,referenceEntry:7,accountTypeLimit:8,statistic:9,trust:10,accountLimit:11,assetPair:12,offerEntry:13,reviewableRequest:15,externalSystemAccountId:16,sale:17,accountKyc:18,externalSystemAccountIdPoolEntry:19,keyValue:20,saleAnte:21,limitsV2:22,statisticsV2:23,pendingStatistic:24,contract:25,accountRole:26,accountRolePermission:27,investmentTokenSale:28,settlementOption:29}); // === xdr source ============================================================
-=======
-	//       ACCOUNT_ROLE_PERMISSION = 27
-	//   };
-	//
-	// ===========================================================================
-	xdr["enum"]("LedgerEntryType",{account:0,fee:2,balance:4,paymentRequest:5,asset:6,referenceEntry:7,accountTypeLimit:8,statistic:9,trust:10,accountLimit:11,assetPair:12,offerEntry:13,reviewableRequest:15,externalSystemAccountId:16,sale:17,accountKyc:18,externalSystemAccountIdPoolEntry:19,keyValue:20,saleAnte:21,limitsV2:22,statisticsV2:23,pendingStatistic:24,contract:25,accountRole:26,accountRolePermission:27}); // === xdr source ============================================================
->>>>>>> feature/nondivisible_tokens
 	//
 	//   union switch (LedgerEntryType type)
 	//       {
@@ -3530,13 +3490,10 @@ var StellarBase =
 	//           PendingStatisticsEntry pendingStatistics;
 	//       case CONTRACT:
 	//           ContractEntry contract;
-<<<<<<< HEAD
 	//       case INVESTMENT_TOKEN_SALE:
 	//           InvestmentTokenSaleEntry investmentTokenSale;
 	//       case SETTLEMENT_OPTION:
 	//           SettlementOptionEntry settlementOption;
-=======
->>>>>>> feature/nondivisible_tokens
 	//       case ACCOUNT_ROLE:
 	//           AccountRoleEntry accountRole;
 	//       case ACCOUNT_ROLE_PERMISSION:
@@ -3544,11 +3501,7 @@ var StellarBase =
 	//       }
 	//
 	// ===========================================================================
-<<<<<<< HEAD
 	xdr.union("LedgerEntryData",{switchOn:xdr.lookup("LedgerEntryType"),switchName:"type",switches:[["account","account"],["fee","feeState"],["balance","balance"],["asset","asset"],["referenceEntry","reference"],["accountTypeLimit","accountTypeLimits"],["statistic","stats"],["trust","trust"],["accountLimit","accountLimits"],["assetPair","assetPair"],["offerEntry","offer"],["reviewableRequest","reviewableRequest"],["externalSystemAccountId","externalSystemAccountId"],["sale","sale"],["keyValue","keyValue"],["accountKyc","accountKyc"],["externalSystemAccountIdPoolEntry","externalSystemAccountIdPoolEntry"],["saleAnte","saleAnte"],["limitsV2","limitsV2"],["statisticsV2","statisticsV2"],["pendingStatistic","pendingStatistics"],["contract","contract"],["investmentTokenSale","investmentTokenSale"],["settlementOption","settlementOption"],["accountRole","accountRole"],["accountRolePermission","accountRolePermission"]],arms:{account:xdr.lookup("AccountEntry"),feeState:xdr.lookup("FeeEntry"),balance:xdr.lookup("BalanceEntry"),asset:xdr.lookup("AssetEntry"),reference:xdr.lookup("ReferenceEntry"),accountTypeLimits:xdr.lookup("AccountTypeLimitsEntry"),stats:xdr.lookup("StatisticsEntry"),trust:xdr.lookup("TrustEntry"),accountLimits:xdr.lookup("AccountLimitsEntry"),assetPair:xdr.lookup("AssetPairEntry"),offer:xdr.lookup("OfferEntry"),reviewableRequest:xdr.lookup("ReviewableRequestEntry"),externalSystemAccountId:xdr.lookup("ExternalSystemAccountId"),sale:xdr.lookup("SaleEntry"),keyValue:xdr.lookup("KeyValueEntry"),accountKyc:xdr.lookup("AccountKycEntry"),externalSystemAccountIdPoolEntry:xdr.lookup("ExternalSystemAccountIdPoolEntry"),saleAnte:xdr.lookup("SaleAnteEntry"),limitsV2:xdr.lookup("LimitsV2Entry"),statisticsV2:xdr.lookup("StatisticsV2Entry"),pendingStatistics:xdr.lookup("PendingStatisticsEntry"),contract:xdr.lookup("ContractEntry"),investmentTokenSale:xdr.lookup("InvestmentTokenSaleEntry"),settlementOption:xdr.lookup("SettlementOptionEntry"),accountRole:xdr.lookup("AccountRoleEntry"),accountRolePermission:xdr.lookup("AccountRolePermissionEntry")}}); // === xdr source ============================================================
-=======
-	xdr.union("LedgerEntryData",{switchOn:xdr.lookup("LedgerEntryType"),switchName:"type",switches:[["account","account"],["fee","feeState"],["balance","balance"],["asset","asset"],["referenceEntry","reference"],["accountTypeLimit","accountTypeLimits"],["statistic","stats"],["trust","trust"],["accountLimit","accountLimits"],["assetPair","assetPair"],["offerEntry","offer"],["reviewableRequest","reviewableRequest"],["externalSystemAccountId","externalSystemAccountId"],["sale","sale"],["keyValue","keyValue"],["accountKyc","accountKyc"],["externalSystemAccountIdPoolEntry","externalSystemAccountIdPoolEntry"],["saleAnte","saleAnte"],["limitsV2","limitsV2"],["statisticsV2","statisticsV2"],["pendingStatistic","pendingStatistics"],["contract","contract"],["accountRole","accountRole"],["accountRolePermission","accountRolePermission"]],arms:{account:xdr.lookup("AccountEntry"),feeState:xdr.lookup("FeeEntry"),balance:xdr.lookup("BalanceEntry"),asset:xdr.lookup("AssetEntry"),reference:xdr.lookup("ReferenceEntry"),accountTypeLimits:xdr.lookup("AccountTypeLimitsEntry"),stats:xdr.lookup("StatisticsEntry"),trust:xdr.lookup("TrustEntry"),accountLimits:xdr.lookup("AccountLimitsEntry"),assetPair:xdr.lookup("AssetPairEntry"),offer:xdr.lookup("OfferEntry"),reviewableRequest:xdr.lookup("ReviewableRequestEntry"),externalSystemAccountId:xdr.lookup("ExternalSystemAccountId"),sale:xdr.lookup("SaleEntry"),keyValue:xdr.lookup("KeyValueEntry"),accountKyc:xdr.lookup("AccountKycEntry"),externalSystemAccountIdPoolEntry:xdr.lookup("ExternalSystemAccountIdPoolEntry"),saleAnte:xdr.lookup("SaleAnteEntry"),limitsV2:xdr.lookup("LimitsV2Entry"),statisticsV2:xdr.lookup("StatisticsV2Entry"),pendingStatistics:xdr.lookup("PendingStatisticsEntry"),contract:xdr.lookup("ContractEntry"),accountRole:xdr.lookup("AccountRoleEntry"),accountRolePermission:xdr.lookup("AccountRolePermissionEntry")}}); // === xdr source ============================================================
->>>>>>> feature/nondivisible_tokens
 	//
 	//   union switch (LedgerVersion v)
 	//       {
@@ -3609,13 +3562,10 @@ var StellarBase =
 	//           PendingStatisticsEntry pendingStatistics;
 	//       case CONTRACT:
 	//           ContractEntry contract;
-<<<<<<< HEAD
 	//       case INVESTMENT_TOKEN_SALE:
 	//           InvestmentTokenSaleEntry investmentTokenSale;
 	//       case SETTLEMENT_OPTION:
 	//           SettlementOptionEntry settlementOption;
-=======
->>>>>>> feature/nondivisible_tokens
 	//       case ACCOUNT_ROLE:
 	//           AccountRoleEntry accountRole;
 	//       case ACCOUNT_ROLE_PERMISSION:
@@ -4143,7 +4093,6 @@ var StellarBase =
 	//       {
 	//       case EMPTY_VERSION:
 	//           void;
-<<<<<<< HEAD
 	//       case ADD_EXPIRATION_DATE_TO_ASSET:
 	//           uint64 expirationDate;
 	//       case ADD_ASSET_BALANCE_PRECISION:
@@ -4152,14 +4101,6 @@ var StellarBase =
 	//
 	// ===========================================================================
 	xdr.union("AssetCreationRequestExt",{switchOn:xdr.lookup("LedgerVersion"),switchName:"v",switches:[["emptyVersion",xdr["void"]()],["addExpirationDateToAsset","expirationDate"],["addAssetBalancePrecision","additionalFields"]],arms:{expirationDate:xdr.lookup("Uint64"),additionalFields:xdr.lookup("AdditionalAssetFields")}}); // === xdr source ============================================================
-=======
-	//       case ADD_ASSET_BALANCE_PRECISION:
-	//           uint32 trailingDigitsCount;
-	//       }
-	//
-	// ===========================================================================
-	xdr.union("AssetCreationRequestExt",{switchOn:xdr.lookup("LedgerVersion"),switchName:"v",switches:[["emptyVersion",xdr["void"]()],["addAssetBalancePrecision","trailingDigitsCount"]],arms:{trailingDigitsCount:xdr.lookup("Uint32")}}); // === xdr source ============================================================
->>>>>>> feature/nondivisible_tokens
 	//
 	//   struct AssetCreationRequest
 	//   {
@@ -4175,15 +4116,10 @@ var StellarBase =
 	//       {
 	//       case EMPTY_VERSION:
 	//           void;
-<<<<<<< HEAD
 	//       case ADD_EXPIRATION_DATE_TO_ASSET:
 	//           uint64 expirationDate;
 	//       case ADD_ASSET_BALANCE_PRECISION:
 	//           AdditionalAssetFields additionalFields;
-=======
-	//       case ADD_ASSET_BALANCE_PRECISION:
-	//           uint32 trailingDigitsCount;
->>>>>>> feature/nondivisible_tokens
 	//       }
 	//       ext;
 	//   };
@@ -4333,12 +4269,9 @@ var StellarBase =
 	//       {
 	//       case EMPTY_VERSION:
 	//           void;
-	//       case ADD_ASSET_BALANCE_PRECISION:
-	//           uint32 trailingDigitsCount;
 	//       }
 	//
 	// ===========================================================================
-<<<<<<< HEAD
 	xdr.union("AdditionalAssetFieldsExt",{switchOn:xdr.lookup("LedgerVersion"),switchName:"v",switches:[["emptyVersion",xdr["void"]()]],arms:{}}); // === xdr source ============================================================
 	//
 	//   struct AdditionalAssetFields
@@ -4370,9 +4303,6 @@ var StellarBase =
 	//
 	// ===========================================================================
 	xdr.union("AssetEntryExt",{switchOn:xdr.lookup("LedgerVersion"),switchName:"v",switches:[["emptyVersion",xdr["void"]()],["addExpirationDateToAsset","expirationDate"],["addAssetBalancePrecision","additionalFields"]],arms:{expirationDate:xdr.lookup("Uint64"),additionalFields:xdr.lookup("AdditionalAssetFields")}}); // === xdr source ============================================================
-=======
-	xdr.union("AssetEntryExt",{switchOn:xdr.lookup("LedgerVersion"),switchName:"v",switches:[["emptyVersion",xdr["void"]()],["addAssetBalancePrecision","trailingDigitsCount"]],arms:{trailingDigitsCount:xdr.lookup("Uint32")}}); // === xdr source ============================================================
->>>>>>> feature/nondivisible_tokens
 	//
 	//   struct AssetEntry
 	//   {
@@ -4391,15 +4321,10 @@ var StellarBase =
 	//       {
 	//       case EMPTY_VERSION:
 	//           void;
-<<<<<<< HEAD
 	//       case ADD_EXPIRATION_DATE_TO_ASSET:
 	//           uint64 expirationDate;
 	//       case ADD_ASSET_BALANCE_PRECISION:
 	//           AdditionalAssetFields additionalFields;
-=======
-	//       case ADD_ASSET_BALANCE_PRECISION:
-	//           uint32 trailingDigitsCount;
->>>>>>> feature/nondivisible_tokens
 	//       }
 	//       ext;
 	//   };
@@ -5004,7 +4929,6 @@ var StellarBase =
 	//   	SOURCE_UNDERFUNDED = -25,
 	//   	SOURCE_BALANCE_LOCK_OVERFLOW = -26,
 	//   	REQUIRES_VERIFICATION = -27, // source must be verified in order to participate
-<<<<<<< HEAD
 	//   	BASE_ASSET_EXPIRED = -28,
 	//   	QUOTE_ASSET_EXPIRED = -29,
 	//   	INVALID_INVESTMENT_TOKEN = -30,
@@ -5013,13 +4937,6 @@ var StellarBase =
 	//
 	// ===========================================================================
 	xdr["enum"]("ManageOfferResultCode",{success:0,malformed:-1,pairNotTraded:-2,balanceNotFound:-3,underfunded:-4,crossSelf:-5,offerOverflow:-6,assetPairNotTradable:-7,physicalPriceRestriction:-8,currentPriceRestriction:-9,notFound:-10,invalidPercentFee:-11,insufficientPrice:-12,orderBookDoesNotExist:-13,saleIsNotStartedYet:-14,saleAlreadyEnded:-15,orderViolatesHardCap:-16,cantParticipateOwnSale:-17,assetMismatched:-18,priceDoesNotMatch:-19,priceIsInvalid:-20,updateIsNotAllowed:-21,invalidAmount:-22,saleIsNotActive:-23,requiresKyc:-24,sourceUnderfunded:-25,sourceBalanceLockOverflow:-26,requiresVerification:-27,baseAssetExpired:-28,quoteAssetExpired:-29,invalidInvestmentToken:-30,incorrectAmountPrecision:-31}); // === xdr source ============================================================
-=======
-	//   	INCORRECT_AMOUNT_PRECISION = -28
-	//   };
-	//
-	// ===========================================================================
-	xdr["enum"]("ManageOfferResultCode",{success:0,malformed:-1,pairNotTraded:-2,balanceNotFound:-3,underfunded:-4,crossSelf:-5,offerOverflow:-6,assetPairNotTradable:-7,physicalPriceRestriction:-8,currentPriceRestriction:-9,notFound:-10,invalidPercentFee:-11,insufficientPrice:-12,orderBookDoesNotExist:-13,saleIsNotStartedYet:-14,saleAlreadyEnded:-15,orderViolatesHardCap:-16,cantParticipateOwnSale:-17,assetMismatched:-18,priceDoesNotMatch:-19,priceIsInvalid:-20,updateIsNotAllowed:-21,invalidAmount:-22,saleIsNotActive:-23,requiresKyc:-24,sourceUnderfunded:-25,sourceBalanceLockOverflow:-26,requiresVerification:-27,incorrectAmountPrecision:-28}); // === xdr source ============================================================
->>>>>>> feature/nondivisible_tokens
 	//
 	//   enum ManageOfferEffect
 	//   {
@@ -7357,7 +7274,6 @@ var StellarBase =
 	// ===========================================================================
 	xdr.struct("LedgerKeyAccountRolePermission",[["permissionId",xdr.lookup("Uint64")],["ext",xdr.lookup("LedgerKeyAccountRolePermissionExt")]]); // === xdr source ============================================================
 	//
-<<<<<<< HEAD
 	//   union switch (LedgerVersion v)
 	//           {
 	//           case EMPTY_VERSION:
@@ -7402,8 +7318,6 @@ var StellarBase =
 	// ===========================================================================
 	xdr.struct("LedgerKeySettlementOption",[["settlementOptionId",xdr.lookup("Uint64")],["ext",xdr.lookup("LedgerKeySettlementOptionExt")]]); // === xdr source ============================================================
 	//
-=======
->>>>>>> feature/nondivisible_tokens
 	//   union LedgerKey switch (LedgerEntryType type)
 	//   {
 	//   case ACCOUNT:
@@ -7651,7 +7565,6 @@ var StellarBase =
 	//           }
 	//           ext;
 	//       } accountRolePermission;
-<<<<<<< HEAD
 	//   case INVESTMENT_TOKEN_SALE:
 	//       struct {
 	//           uint64 saleID;
@@ -7676,12 +7589,6 @@ var StellarBase =
 	//
 	// ===========================================================================
 	xdr.union("LedgerKey",{switchOn:xdr.lookup("LedgerEntryType"),switchName:"type",switches:[["account","account"],["fee","feeState"],["balance","balance"],["asset","asset"],["referenceEntry","reference"],["accountTypeLimit","accountTypeLimits"],["statistic","stats"],["trust","trust"],["accountLimit","accountLimits"],["assetPair","assetPair"],["offerEntry","offer"],["reviewableRequest","reviewableRequest"],["externalSystemAccountId","externalSystemAccountId"],["sale","sale"],["keyValue","keyValue"],["accountKyc","accountKyc"],["externalSystemAccountIdPoolEntry","externalSystemAccountIdPoolEntry"],["saleAnte","saleAnte"],["limitsV2","limitsV2"],["statisticsV2","statisticsV2"],["pendingStatistic","pendingStatistics"],["contract","contract"],["accountRole","accountRole"],["accountRolePermission","accountRolePermission"],["investmentTokenSale","investmentTokenSale"],["settlementOption","settlementOption"]],arms:{account:xdr.lookup("LedgerKeyAccount"),feeState:xdr.lookup("LedgerKeyFeeState"),balance:xdr.lookup("LedgerKeyBalance"),asset:xdr.lookup("LedgerKeyAsset"),reference:xdr.lookup("LedgerKeyReference"),accountTypeLimits:xdr.lookup("LedgerKeyAccountTypeLimits"),stats:xdr.lookup("LedgerKeyStats"),trust:xdr.lookup("LedgerKeyTrust"),accountLimits:xdr.lookup("LedgerKeyAccountLimits"),assetPair:xdr.lookup("LedgerKeyAssetPair"),offer:xdr.lookup("LedgerKeyOffer"),reviewableRequest:xdr.lookup("LedgerKeyReviewableRequest"),externalSystemAccountId:xdr.lookup("LedgerKeyExternalSystemAccountId"),sale:xdr.lookup("LedgerKeySale"),keyValue:xdr.lookup("LedgerKeyKeyValue"),accountKyc:xdr.lookup("LedgerKeyAccountKyc"),externalSystemAccountIdPoolEntry:xdr.lookup("LedgerKeyExternalSystemAccountIdPoolEntry"),saleAnte:xdr.lookup("LedgerKeySaleAnte"),limitsV2:xdr.lookup("LedgerKeyLimitsV2"),statisticsV2:xdr.lookup("LedgerKeyStatisticsV2"),pendingStatistics:xdr.lookup("LedgerKeyPendingStatistics"),contract:xdr.lookup("LedgerKeyContract"),accountRole:xdr.lookup("LedgerKeyAccountRole"),accountRolePermission:xdr.lookup("LedgerKeyAccountRolePermission"),investmentTokenSale:xdr.lookup("LedgerKeyInvestmentTokenSale"),settlementOption:xdr.lookup("LedgerKeySettlementOption")}}); // === xdr source ============================================================
-=======
-	//   };
-	//
-	// ===========================================================================
-	xdr.union("LedgerKey",{switchOn:xdr.lookup("LedgerEntryType"),switchName:"type",switches:[["account","account"],["fee","feeState"],["balance","balance"],["asset","asset"],["referenceEntry","reference"],["accountTypeLimit","accountTypeLimits"],["statistic","stats"],["trust","trust"],["accountLimit","accountLimits"],["assetPair","assetPair"],["offerEntry","offer"],["reviewableRequest","reviewableRequest"],["externalSystemAccountId","externalSystemAccountId"],["sale","sale"],["keyValue","keyValue"],["accountKyc","accountKyc"],["externalSystemAccountIdPoolEntry","externalSystemAccountIdPoolEntry"],["saleAnte","saleAnte"],["limitsV2","limitsV2"],["statisticsV2","statisticsV2"],["pendingStatistic","pendingStatistics"],["contract","contract"],["accountRole","accountRole"],["accountRolePermission","accountRolePermission"]],arms:{account:xdr.lookup("LedgerKeyAccount"),feeState:xdr.lookup("LedgerKeyFeeState"),balance:xdr.lookup("LedgerKeyBalance"),asset:xdr.lookup("LedgerKeyAsset"),reference:xdr.lookup("LedgerKeyReference"),accountTypeLimits:xdr.lookup("LedgerKeyAccountTypeLimits"),stats:xdr.lookup("LedgerKeyStats"),trust:xdr.lookup("LedgerKeyTrust"),accountLimits:xdr.lookup("LedgerKeyAccountLimits"),assetPair:xdr.lookup("LedgerKeyAssetPair"),offer:xdr.lookup("LedgerKeyOffer"),reviewableRequest:xdr.lookup("LedgerKeyReviewableRequest"),externalSystemAccountId:xdr.lookup("LedgerKeyExternalSystemAccountId"),sale:xdr.lookup("LedgerKeySale"),keyValue:xdr.lookup("LedgerKeyKeyValue"),accountKyc:xdr.lookup("LedgerKeyAccountKyc"),externalSystemAccountIdPoolEntry:xdr.lookup("LedgerKeyExternalSystemAccountIdPoolEntry"),saleAnte:xdr.lookup("LedgerKeySaleAnte"),limitsV2:xdr.lookup("LedgerKeyLimitsV2"),statisticsV2:xdr.lookup("LedgerKeyStatisticsV2"),pendingStatistics:xdr.lookup("LedgerKeyPendingStatistics"),contract:xdr.lookup("LedgerKeyContract"),accountRole:xdr.lookup("LedgerKeyAccountRole"),accountRolePermission:xdr.lookup("LedgerKeyAccountRolePermission")}}); // === xdr source ============================================================
->>>>>>> feature/nondivisible_tokens
 	//
 	//   enum BucketEntryType
 	//   {
@@ -8995,22 +8902,14 @@ var StellarBase =
 	//       ADD_CAPITAL_DEPLOYMENT_FEE_TYPE = 48,
 	//       ADD_TRANSACTION_FEE = 49,
 	//       ADD_DEFAULT_ISSUANCE_TASKS = 50,
-<<<<<<< HEAD
 	//       ADD_EXPIRATION_DATE_TO_ASSET = 51,
 	//       ADD_PROLONGATION_FLAG_TO_ITSALE = 52,
 	//   	ADD_ASSET_BALANCE_PRECISION = 53,
-=======
-	//   	ADD_ASSET_BALANCE_PRECISION = 51,
->>>>>>> feature/nondivisible_tokens
 	//       REPLACE_ACCOUNT_TYPES_WITH_POLICIES = 999999 // do not use it yet, there are features to be improved
 	//   };
 	//
 	// ===========================================================================
-<<<<<<< HEAD
 	xdr["enum"]("LedgerVersion",{emptyVersion:0,passExternalSysAccIdInCreateAcc:1,detailedLedgerChange:2,newSignerType:3,typedSale:4,uniqueBalanceCreation:5,assetPreissuerMigration:6,assetPreissuerMigrated:7,useKycLevel:8,errorOnNonZeroTasksToRemoveInRejectKyc:9,allowAccountManagerToChangeKyc:10,changeAssetIssuerBadAuthExtraFixed:11,autoCreateCommissionBalanceOnTransfer:12,allowRejectRequestOfBlockedRequestor:13,assetUpdateCheckReferenceExist:14,crossAssetFee:15,usePaymentV2:16,allowSyndicateToUpdateKyc:17,doNotBuildAccountIfVersionEqualsOrGreater:18,allowToSpecifyRequiredBaseAssetAmountForHardCap:19,kycRule:20,allowToCreateSeveralSale:21,keyValuePoolEntryExpiresAt:22,keyValueUpdate:23,allowToCancelSaleParticipWithoutSpecifingBalance:24,detailsMaxLengthExtended:25,allowMasterToManageSale:26,useSaleAnte:27,fixAssetPairsCreationInSaleCreation:28,statableSale:29,createOnlyStatisticsV2:30,limitsUpdateRequestDeprecatedDocumentHash:31,fixPaymentV2Fee:32,addSaleIdReviewRequestResult:33,fixSetSaleStateAndCheckSaleStateOp:34,fixUpdateMaxIssuance:35,allowCloseSaleWithNonZeroBalance:36,allowToUpdateVotingSalesAsPromotion:37,allowToIssueAfterSale:38,fixPaymentV2SendToSelf:39,fixPaymentV2DestAccountNotFound:40,fixCreateKycRequestAutoApprove:41,addTasksToReviewableRequest:42,useOnlyPaymentV2:43,addReviewInvoiceRequestPaymentResponse:44,addContractIdReviewRequestResult:45,allowToUpdateAndRejectLimitsUpdateRequest:46,addCustomerDetailsToContract:47,addCapitalDeploymentFeeType:48,addTransactionFee:49,addDefaultIssuanceTask:50,addExpirationDateToAsset:51,addProlongationFlagToItsale:52,addAssetBalancePrecision:53,replaceAccountTypesWithPolicy:999999}); // === xdr source ============================================================
-=======
-	xdr["enum"]("LedgerVersion",{emptyVersion:0,passExternalSysAccIdInCreateAcc:1,detailedLedgerChange:2,newSignerType:3,typedSale:4,uniqueBalanceCreation:5,assetPreissuerMigration:6,assetPreissuerMigrated:7,useKycLevel:8,errorOnNonZeroTasksToRemoveInRejectKyc:9,allowAccountManagerToChangeKyc:10,changeAssetIssuerBadAuthExtraFixed:11,autoCreateCommissionBalanceOnTransfer:12,allowRejectRequestOfBlockedRequestor:13,assetUpdateCheckReferenceExist:14,crossAssetFee:15,usePaymentV2:16,allowSyndicateToUpdateKyc:17,doNotBuildAccountIfVersionEqualsOrGreater:18,allowToSpecifyRequiredBaseAssetAmountForHardCap:19,kycRule:20,allowToCreateSeveralSale:21,keyValuePoolEntryExpiresAt:22,keyValueUpdate:23,allowToCancelSaleParticipWithoutSpecifingBalance:24,detailsMaxLengthExtended:25,allowMasterToManageSale:26,useSaleAnte:27,fixAssetPairsCreationInSaleCreation:28,statableSale:29,createOnlyStatisticsV2:30,limitsUpdateRequestDeprecatedDocumentHash:31,fixPaymentV2Fee:32,addSaleIdReviewRequestResult:33,fixSetSaleStateAndCheckSaleStateOp:34,fixUpdateMaxIssuance:35,allowCloseSaleWithNonZeroBalance:36,allowToUpdateVotingSalesAsPromotion:37,allowToIssueAfterSale:38,fixPaymentV2SendToSelf:39,fixPaymentV2DestAccountNotFound:40,fixCreateKycRequestAutoApprove:41,addTasksToReviewableRequest:42,useOnlyPaymentV2:43,addReviewInvoiceRequestPaymentResponse:44,addContractIdReviewRequestResult:45,allowToUpdateAndRejectLimitsUpdateRequest:46,addCustomerDetailsToContract:47,addCapitalDeploymentFeeType:48,addTransactionFee:49,addDefaultIssuanceTask:50,addAssetBalancePrecision:51,replaceAccountTypesWithPolicy:999999}); // === xdr source ============================================================
->>>>>>> feature/nondivisible_tokens
 	//
 	//   typedef opaque Signature<64>;
 	//
@@ -9167,7 +9066,6 @@ var StellarBase =
 	//       CANCEL_SALE_REQUEST = 31,
 	//       PAYOUT = 32,
 	//       MANAGE_ACCOUNT_ROLE = 33,
-<<<<<<< HEAD
 	//       MANAGE_ACCOUNT_ROLE_PERMISSION = 34,
 	//       MANAGE_INVESTMENT_TOKEN_SALE_CREATION_REQUEST = 35,
 	//       CREATE_INVESTMENT_TOKEN_SALE_PARTICIPATION = 36,
@@ -9177,13 +9075,6 @@ var StellarBase =
 	//
 	// ===========================================================================
 	xdr["enum"]("OperationType",{createAccount:0,payment:1,setOption:2,createIssuanceRequest:3,setFee:5,manageAccount:6,createWithdrawalRequest:7,manageBalance:9,manageAsset:11,createPreissuanceRequest:12,manageLimit:13,directDebit:14,manageAssetPair:15,manageOffer:16,manageInvoiceRequest:17,reviewRequest:18,createSaleRequest:19,checkSaleState:20,createAmlAlert:21,createKycRequest:22,paymentV2:23,manageExternalSystemAccountIdPoolEntry:24,bindExternalSystemAccountId:25,manageSale:26,manageKeyValue:27,createManageLimitsRequest:28,manageContractRequest:29,manageContract:30,cancelSaleRequest:31,payout:32,manageAccountRole:33,manageAccountRolePermission:34,manageInvestmentTokenSaleCreationRequest:35,createInvestmentTokenSaleParticipation:36,manageSettlementOption:37,performSettlement:38}); // === xdr source ============================================================
-=======
-	//       MANAGE_ACCOUNT_ROLE_PERMISSION = 34
-	//   };
-	//
-	// ===========================================================================
-	xdr["enum"]("OperationType",{createAccount:0,payment:1,setOption:2,createIssuanceRequest:3,setFee:5,manageAccount:6,createWithdrawalRequest:7,manageBalance:9,manageAsset:11,createPreissuanceRequest:12,manageLimit:13,directDebit:14,manageAssetPair:15,manageOffer:16,manageInvoiceRequest:17,reviewRequest:18,createSaleRequest:19,checkSaleState:20,createAmlAlert:21,createKycRequest:22,paymentV2:23,manageExternalSystemAccountIdPoolEntry:24,bindExternalSystemAccountId:25,manageSale:26,manageKeyValue:27,createManageLimitsRequest:28,manageContractRequest:29,manageContract:30,cancelSaleRequest:31,payout:32,manageAccountRole:33,manageAccountRolePermission:34}); // === xdr source ============================================================
->>>>>>> feature/nondivisible_tokens
 	//
 	//   struct DecoratedSignature
 	//   {
@@ -9809,11 +9700,7 @@ var StellarBase =
 	//   };
 	//
 	// ===========================================================================
-<<<<<<< HEAD
 	xdr["enum"]("ReviewRequestResultCode",{success:0,invalidReason:-1,invalidAction:-2,hashMismatched:-3,notFound:-4,typeMismatched:-5,rejectNotAllowed:-6,invalidExternalDetail:-7,requestorIsBlocked:-8,permanentRejectNotAllowed:-9,reviewDetailsMustBeProvided:-10,assetAlreadyExist:-20,assetDoesNotExist:-21,invalidExpirationDate:-22,changingInvestmentTokenPolicyIsNotAllowed:-23,maxIssuanceAmountExceeded:-40,insufficientAvailableForIssuanceAmount:-41,fullLine:-42,systemTasksNotAllowed:-43,incorrectPrecision:-44,baseAssetDoesNotExist:-50,hardCapWillExceedMaxIssuance:-51,insufficientPreissuedForHardCap:-52,nonZeroTasksToRemoveNotAllowed:-60,saleNotFound:-70,invalidSaleState:-80,invalidSaleNewEndTime:-90,amountMismatched:-101,destinationBalanceMismatched:-102,notAllowedAccountDestination:-103,requiredSourcePayForDestination:-104,sourceBalanceMismatched:-105,contractNotFound:-106,invoiceReceiverBalanceLockAmountOverflow:-107,invoiceAlreadyApproved:-108,paymentV2Malformed:-110,underfunded:-111,lineFull:-112,destinationBalanceNotFound:-113,balanceAssetsMismatched:-114,srcBalanceNotFound:-115,referenceDuplication:-116,statsOverflow:-117,limitsExceeded:-118,notAllowedByAssetPolicy:-119,invalidDestinationFee:-120,invalidDestinationFeeAsset:-121,feeAssetMismatched:-122,insufficientFeeAmount:-123,balanceToChargeFeeFromNotFound:-124,paymentAmountIsLessThanDestFee:-125,destinationAccountNotFound:-126,assetExpired:-127,incorrectAmountPrecision:-128,cannotCreateForAccIdAndAccType:130,invalidLimit:131,contractDetailsTooLong:-140}); // === xdr source ============================================================
-=======
-	xdr["enum"]("ReviewRequestResultCode",{success:0,invalidReason:-1,invalidAction:-2,hashMismatched:-3,notFound:-4,typeMismatched:-5,rejectNotAllowed:-6,invalidExternalDetail:-7,requestorIsBlocked:-8,permanentRejectNotAllowed:-9,assetAlreadyExist:-20,assetDoesNotExist:-21,maxIssuanceAmountExceeded:-40,insufficientAvailableForIssuanceAmount:-41,fullLine:-42,systemTasksNotAllowed:-43,incorrectPrecision:-44,baseAssetDoesNotExist:-50,hardCapWillExceedMaxIssuance:-51,insufficientPreissuedForHardCap:-52,nonZeroTasksToRemoveNotAllowed:-60,saleNotFound:-70,invalidSaleState:-80,invalidSaleNewEndTime:-90,amountMismatched:-101,destinationBalanceMismatched:-102,notAllowedAccountDestination:-103,requiredSourcePayForDestination:-104,sourceBalanceMismatched:-105,contractNotFound:-106,invoiceReceiverBalanceLockAmountOverflow:-107,invoiceAlreadyApproved:-108,paymentV2Malformed:-110,underfunded:-111,lineFull:-112,destinationBalanceNotFound:-113,balanceAssetsMismatched:-114,srcBalanceNotFound:-115,referenceDuplication:-116,statsOverflow:-117,limitsExceeded:-118,notAllowedByAssetPolicy:-119,invalidDestinationFee:-120,invalidDestinationFeeAsset:-121,feeAssetMismatched:-122,insufficientFeeAmount:-123,balanceToChargeFeeFromNotFound:-124,paymentAmountIsLessThanDestFee:-125,destinationAccountNotFound:-126,cannotCreateForAccIdAndAccType:130,invalidLimit:131,contractDetailsTooLong:-140}); // === xdr source ============================================================
->>>>>>> feature/nondivisible_tokens
 	//
 	//   union switch (LedgerVersion v)
 	//   		{
@@ -46784,18 +46671,21 @@ var StellarBase =
 	            }
 	            attrs.initialPreissuedAmount = _base_operation.BaseOperation._toUnsignedXDRAmount(opts.initialPreissuedAmount);
 
-<<<<<<< HEAD
-	            if (!(0, _lodashIsUndefined2['default'])(opts.expirationDate)) {
-	                attrs.ext = new _generatedStellarXdr_generated2['default'].AssetCreationRequestExt.addExpirationDateToAsset(_jsXdr.UnsignedHyper.fromString(opts.expirationDate));
-	            } else {
-	                attrs.ext = new _generatedStellarXdr_generated2['default'].AssetCreationRequestExt(_generatedStellarXdr_generated2['default'].LedgerVersion.emptyVersion());
+	            if ((0, _lodashIsUndefined2['default'])(opts.expirationDate)) {
+	                throw new Error("opts.expirationDate is undefined");
 	            }
-=======
+
 	            if (!_base_operation.BaseOperation.isValidAmount(opts.trailingDigitsCount, true, 6, 0)) {
 	                throw new Error("opts.trailingDigits is invalid");
 	            }
-	            attrs.ext = new _generatedStellarXdr_generated2['default'].AssetCreationRequestExt.addAssetBalancePrecision(Number(opts.trailingDigitsCount));
->>>>>>> feature/nondivisible_tokens
+
+	            var ext = new _generatedStellarXdr_generated2['default'].AdditionalAssetFields({
+	                expirationDate: _jsXdr.UnsignedHyper.fromString(opts.expirationDate),
+	                trailingDigitsCount: Number(opts.trailingDigitsCount),
+	                ext: new _generatedStellarXdr_generated2['default'].AdditionalAssetFieldsExt(_generatedStellarXdr_generated2['default'].LedgerVersion.emptyVersion())
+	            });
+
+	            attrs.ext = new _generatedStellarXdr_generated2['default'].AssetCreationRequestExt.addAssetBalancePrecision(ext);
 
 	            var assetCreationRequest = new _generatedStellarXdr_generated2['default'].AssetCreationRequest(attrs);
 	            return ManageAssetBuilder._createManageAssetOp(opts, new _generatedStellarXdr_generated2['default'].ManageAssetOpRequest.createAssetCreationRequest(assetCreationRequest));
@@ -46808,6 +46698,7 @@ var StellarBase =
 	         * @param {string} opts.requestID - request ID, if 0 - creates new, updates otherwise
 	         * @param {string} opts.code - Asset code
 	         * @param {number} opts.policies - asset policies
+	         * @param {string} opts.expirationDate - new expiration date of asset in seconds
 	         *
 	         * @param {object} opts.details - Additional details about asset
 	         * @param {string} opts.details.name - Name of the asset
@@ -46826,7 +46717,12 @@ var StellarBase =
 	        key: 'assetUpdateRequest',
 	        value: function assetUpdateRequest(opts) {
 	            var attrs = ManageAssetBuilder._createUpdateAttrs(opts);
-	            attrs.ext = new _generatedStellarXdr_generated2['default'].AssetUpdateRequestExt(_generatedStellarXdr_generated2['default'].LedgerVersion.emptyVersion());
+
+	            if ((0, _lodashIsUndefined2['default'])(opts.expirationDate)) {
+	                throw new Error("opts.expirationDate is undefined");
+	            }
+
+	            attrs.ext = new _generatedStellarXdr_generated2['default'].AssetUpdateRequestExt.addExpirationDateToAsset(_jsXdr.UnsignedHyper.fromString(opts.expirationDate));
 	            var assetUpdateRequest = new _generatedStellarXdr_generated2['default'].AssetUpdateRequest(attrs);
 
 	            return ManageAssetBuilder._createManageAssetOp(opts, new _generatedStellarXdr_generated2['default'].ManageAssetOpRequest.createAssetUpdateRequest(assetUpdateRequest));
@@ -46977,16 +46873,8 @@ var StellarBase =
 	                        result.maxIssuanceAmount = _base_operation.BaseOperation._fromXDRAmount(request.maxIssuanceAmount());
 	                        result.initialPreissuedAmount = _base_operation.BaseOperation._fromXDRAmount(request.initialPreissuedAmount());
 	                        result.details = JSON.parse(request.details());
-<<<<<<< HEAD
-	                        switch (request.ext()['switch']()) {
-	                            case _generatedStellarXdr_generated2['default'].LedgerVersion.addExpirationDateToAsset():
-	                                {
-	                                    result.expirationDate = request.ext().expirationDate().toString();
-	                                }
-	                        }
-=======
-	                        result.trailingDigitsCount = request.ext().trailingDigitsCount().toString();
->>>>>>> feature/nondivisible_tokens
+	                        result.expirationDate = request.ext().additionalFields().expirationDate().toString();
+	                        result.trailingDigitsCount = request.ext().additionalFields().trailingDigitsCount().toString();
 	                        break;
 	                    }
 	                case _generatedStellarXdr_generated2['default'].ManageAssetAction.createAssetUpdateRequest():
@@ -46995,6 +46883,7 @@ var StellarBase =
 	                        result.code = request.code();
 	                        result.policies = request.policies();
 	                        result.details = JSON.parse(request.details());
+	                        result.expirationDate = request.ext().expirationDate().toString();
 	                        break;
 	                    }
 	                case _generatedStellarXdr_generated2['default'].ManageAssetAction.cancelAssetRequest():
