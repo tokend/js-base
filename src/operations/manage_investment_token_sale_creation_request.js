@@ -97,6 +97,12 @@ export class ManageInvestmentTokenSaleCreationRequestBuilder {
             ext: new xdr.InvestmentTokenSaleCreationRequestExt(
                 xdr.LedgerVersion.emptyVersion())
         };
+
+        if (!isUndefined(opts.isProlongationAllowed)) {
+            attrs.ext =
+                new xdr.InvestmentTokenSaleCreationRequestExt.addProlongationFlagToItsale(opts.isProlongationAllowed);
+        }
+
         if (!BaseOperation.isValidAsset(opts.baseAsset)){
             throw new Error("base asset is invalid");
         }
@@ -198,6 +204,12 @@ export class ManageInvestmentTokenSaleCreationRequestBuilder {
                     request.quoteAssets()[i].price()),
                 asset: request.quoteAssets()[i].quoteAsset(),
             });
+        }
+
+        switch (request.ext().switch()) {
+            case xdr.LedgerVersion.addProlongationFlagToItsale(): {
+                result.isProlongationAllowed = request.ext().isProlongationAllowed();
+            }
         }
     }
 
