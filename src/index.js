@@ -36,6 +36,10 @@ export { CreateManageLimitsRequestBuilder } from "./operations/create_manage_lim
 export { ManageInvoiceRequestBuilder } from "./operations/manage_invoice_request_builder";
 export { ManageContractRequestBuilder } from "./operations/manage_contract_request_builder";
 export { ManageContractBuilder } from "./operations/manage_contract_builder";
+export { ManageInvestmentTokenSaleCreationRequestBuilder } from "./operations/manage_investment_token_sale_creation_request";
+export { CreateInvestmentTokenSaleParticipationBuilder } from "./operations/create_investment_token_sale_participation";
+export { ManageSettlementOptionBuilder } from "./operations/manage_settlement_option_builder";
+export { PerformSettlementBuilder } from "./operations/perform_settlement_builder";
 export { BaseOperation } from "./operations/base_operation";
 
 export * from "./strkey";

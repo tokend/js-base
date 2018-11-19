@@ -32,7 +32,6 @@ export class ManageContractRequestBuilder {
             throw new Error("opts.startTime is invalid");
         }
         if (isUndefined(opts.endTime)) {
-
             throw new Error("opts.endTime is invalid");
         }
         contractRequestAttr.startTime = UnsignedHyper.fromString(opts.startTime);
