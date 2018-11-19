@@ -14,7 +14,8 @@ describe('ManageAsset', function () {
                 details: {
                     name: "USD Name",
                 },
-                expirationDate: "1539597667"
+                expirationDate: "1539597667",
+                trailingDigitsCount: "4"
             }
             let op = StellarBase.ManageAssetBuilder.assetCreationRequest(opts);
             var xdr = op.toXDR("hex");
@@ -30,6 +31,7 @@ describe('ManageAsset', function () {
             expect(obj.policies).to.be.equal(opts.policies);
             expect(obj.initialPreissuedAmount).to.be.equal(opts.initialPreissuedAmount);
             expect(obj.expirationDate).to.be.equal(opts.expirationDate);
+            expect(obj.trailingDigitsCount).to.be.equal(opts.trailingDigitsCount);
         });
     });
 
