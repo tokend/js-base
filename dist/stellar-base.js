@@ -456,9 +456,9 @@ var StellarBase =
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	// revision: 4579c18afba76b788fc148b54ea0923682b14e2e
+	// revision: e92f98507b3a4c1022fbbde7f76dea9c76859439
 	// branch:   ff
-	// Automatically generated on 2018-11-19T14:16:29+00:00
+	// Automatically generated on 2018-11-20T16:28:37+00:00
 	// DO NOT EDIT or your changes may be overwritten
 	/* jshint maxstatements:2147483647  */ /* jshint esnext:true  */"use strict";Object.defineProperty(exports,"__esModule",{value:true});function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj["default"] = obj;return newObj;}}var _jsXdr=__webpack_require__(3);var XDR=_interopRequireWildcard(_jsXdr);var types=XDR.config(function(xdr){ // === xdr source ============================================================
 	//
@@ -1713,11 +1713,12 @@ var StellarBase =
 	//       SOURCE_SETTLEMENT_ASSET_BALANCE_UNDERFUNDED = -10,
 	//       INVESTOR_SETTLEMENT_ASSET_BALANCE_LINE_FULL = -11,
 	//       TOO_EARLY_TO_PERFORM_SETTLEMENT = -12,
-	//       NOT_ALL_SETTLEMENT_ASSETS_ARE_PROVIDED_BY_SOURCE = -13
+	//       NOT_ALL_SETTLEMENT_ASSETS_ARE_PROVIDED_BY_SOURCE = -13,
+	//       INVALID_SETTLEMENT_AMOUNT_PRECISION = -14
 	//   };
 	//
 	// ===========================================================================
-	xdr["enum"]("PerformSettlementResultCode",{success:0,investmentTokenSaleNotFound:-1,invalidNewInvestmentToken:-2,investmentTokenNotFound:-3,newInvestmentTokenNotFound:-4,invalidSettlementAsset:-5,sourceNewInvestmentTokenBalanceNotFound:-6,assetCodeNotFoundInSettlementAsset:-7,sourceSettlementAssetBalanceNotFound:-8,settlementAssetAmountOverflow:-9,sourceSettlementAssetBalanceUnderfunded:-10,investorSettlementAssetBalanceLineFull:-11,tooEarlyToPerformSettlement:-12,notAllSettlementAssetsAreProvidedBySource:-13}); // === xdr source ============================================================
+	xdr["enum"]("PerformSettlementResultCode",{success:0,investmentTokenSaleNotFound:-1,invalidNewInvestmentToken:-2,investmentTokenNotFound:-3,newInvestmentTokenNotFound:-4,invalidSettlementAsset:-5,sourceNewInvestmentTokenBalanceNotFound:-6,assetCodeNotFoundInSettlementAsset:-7,sourceSettlementAssetBalanceNotFound:-8,settlementAssetAmountOverflow:-9,sourceSettlementAssetBalanceUnderfunded:-10,investorSettlementAssetBalanceLineFull:-11,tooEarlyToPerformSettlement:-12,notAllSettlementAssetsAreProvidedBySource:-13,invalidSettlementAmountPrecision:-14}); // === xdr source ============================================================
 	//
 	//   union switch (LedgerVersion v)
 	//      {
@@ -8117,12 +8118,11 @@ var StellarBase =
 	//       INVOICE_BALANCE_MISMATCH = -15,
 	//       INVOICE_ACCOUNT_MISMATCH = -16,
 	//       INVOICE_ALREADY_PAID = -17,
-	//       PAYMENT_V1_NO_LONGER_SUPPORTED = -18,
-	//       INCORRECT_PRECISION = -19
+	//       PAYMENT_V1_NO_LONGER_SUPPORTED = -18
 	//   };
 	//
 	// ===========================================================================
-	xdr["enum"]("PaymentResultCode",{success:0,malformed:-1,underfunded:-2,lineFull:-3,feeMismatched:-4,balanceNotFound:-5,balanceAccountMismatched:-6,balanceAssetsMismatched:-7,srcBalanceNotFound:-8,referenceDuplication:-9,statsOverflow:-10,limitsExceeded:-11,notAllowedByAssetPolicy:-12,invoiceNotFound:-13,invoiceWrongAmount:-14,invoiceBalanceMismatch:-15,invoiceAccountMismatch:-16,invoiceAlreadyPaid:-17,paymentV1NoLongerSupported:-18,incorrectPrecision:-19}); // === xdr source ============================================================
+	xdr["enum"]("PaymentResultCode",{success:0,malformed:-1,underfunded:-2,lineFull:-3,feeMismatched:-4,balanceNotFound:-5,balanceAccountMismatched:-6,balanceAssetsMismatched:-7,srcBalanceNotFound:-8,referenceDuplication:-9,statsOverflow:-10,limitsExceeded:-11,notAllowedByAssetPolicy:-12,invoiceNotFound:-13,invoiceWrongAmount:-14,invoiceBalanceMismatch:-15,invoiceAccountMismatch:-16,invoiceAlreadyPaid:-17,paymentV1NoLongerSupported:-18}); // === xdr source ============================================================
 	//
 	//   union switch (LedgerVersion v)
 	//       {

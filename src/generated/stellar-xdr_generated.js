@@ -1,6 +1,6 @@
-// revision: 4579c18afba76b788fc148b54ea0923682b14e2e
+// revision: e92f98507b3a4c1022fbbde7f76dea9c76859439
 // branch:   ff
-// Automatically generated on 2018-11-19T14:16:29+00:00
+// Automatically generated on 2018-11-20T16:28:37+00:00
 // DO NOT EDIT or your changes may be overwritten
 
 /* jshint maxstatements:2147483647  */
@@ -2037,7 +2037,8 @@ xdr.struct("PerformSettlementOp", [
 //       SOURCE_SETTLEMENT_ASSET_BALANCE_UNDERFUNDED = -10,
 //       INVESTOR_SETTLEMENT_ASSET_BALANCE_LINE_FULL = -11,
 //       TOO_EARLY_TO_PERFORM_SETTLEMENT = -12,
-//       NOT_ALL_SETTLEMENT_ASSETS_ARE_PROVIDED_BY_SOURCE = -13
+//       NOT_ALL_SETTLEMENT_ASSETS_ARE_PROVIDED_BY_SOURCE = -13,
+//       INVALID_SETTLEMENT_AMOUNT_PRECISION = -14
 //   };
 //
 // ===========================================================================
@@ -2056,6 +2057,7 @@ xdr.enum("PerformSettlementResultCode", {
   investorSettlementAssetBalanceLineFull: -11,
   tooEarlyToPerformSettlement: -12,
   notAllSettlementAssetsAreProvidedBySource: -13,
+  invalidSettlementAmountPrecision: -14,
 });
 
 // === xdr source ============================================================
@@ -12520,8 +12522,7 @@ xdr.struct("PaymentOp", [
 //       INVOICE_BALANCE_MISMATCH = -15,
 //       INVOICE_ACCOUNT_MISMATCH = -16,
 //       INVOICE_ALREADY_PAID = -17,
-//       PAYMENT_V1_NO_LONGER_SUPPORTED = -18,
-//       INCORRECT_PRECISION = -19
+//       PAYMENT_V1_NO_LONGER_SUPPORTED = -18
 //   };
 //
 // ===========================================================================
@@ -12545,7 +12546,6 @@ xdr.enum("PaymentResultCode", {
   invoiceAccountMismatch: -16,
   invoiceAlreadyPaid: -17,
   paymentV1NoLongerSupported: -18,
-  incorrectPrecision: -19,
 });
 
 // === xdr source ============================================================
