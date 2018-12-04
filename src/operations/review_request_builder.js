@@ -97,6 +97,8 @@ export class ReviewRequestBuilder {
      * @param {string} opts.reason - Reject reason
      * @param {string} opts.externalDetails - External System details
      * @param {string} [opts.source] - The source account for the payment. Defaults to the transaction's source account.
+     * @param {number|string} opts.tasksToAdd - new tasks for reviewable request to be accomplished before fulfill
+     * @param {number|string} opts.tasksToRemove - tasks, which were done by the reviewer and should be removed
      * @returns {xdr.ReviewRequestOp}
      */
     static reviewWithdrawRequest(opts) {
