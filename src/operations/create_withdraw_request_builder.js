@@ -15,8 +15,6 @@ export class CreateWithdrawRequestBuilder {
      * @param {string} opts.fee.fixed - fixed fee to be charged
      * @param {string} opts.fee.percent - percent fee to be charged
      * @param {object} opts.externalDetails - External details needed for PSIM to process withdraw operation
-     * @param {string} opts.destAsset - Asset in which specifed amount will be autoconverted
-     * @param {string} opts.expectedDestAssetAmount - Expected dest asset amount
      * @param {number|string} opts.allTasks - Bitmask of all tasks which must be completed for the request approval
      * @param {string} [opts.source] - The source account for the payment. Defaults to the transaction's source account.
      * @returns {xdr.CreateWithdrawalRequestOp}
@@ -48,22 +46,6 @@ export class CreateWithdrawRequestBuilder {
         }
 
         attrs.externalDetails = JSON.stringify(opts.externalDetails);
-
-        if (!BaseOperation.isValidAsset(opts.destAsset)) {
-            throw new Error("opts.destAsset is invalid");
-        }
-
-        if (!BaseOperation.isValidAmount(opts.expectedDestAssetAmount, false)) {
-            throw new Error("opts.expectedDestAssetAmount is invalid");
-        }
-
-        let autoConversionDetails = new xdr.AutoConversionWithdrawalDetails({
-            destAsset: opts.destAsset,
-            expectedAmount: BaseOperation._toUnsignedXDRAmount(opts.expectedDestAssetAmount),
-            ext: new xdr.AutoConversionWithdrawalDetailsExt(xdr.LedgerVersion.emptyVersion())
-        });
-
-        attrs.details = new xdr.WithdrawalRequestDetails.autoConversion(autoConversionDetails);
         attrs.ext = new xdr.WithdrawalRequestExt(xdr.LedgerVersion.emptyVersion());
 
         let rawAllTasks = BaseOperation._checkUnsignedIntValue("allTasks", opts.allTasks);
@@ -72,7 +54,8 @@ export class CreateWithdrawRequestBuilder {
         let request = new xdr.WithdrawalRequest(attrs);
         let withdrawRequestOp = new xdr.CreateWithdrawalRequestOp({
             request: request,
-            ext: new xdr.CreateWithdrawalRequestOpExt.withdrawalTask(rawAllTasks)});
+            allTasks: rawAllTasks,
+            ext: new xdr.CreateWithdrawalRequestOpExt(xdr.LedgerVersion.emptyVersion())});
         let opAttributes = {};
         opAttributes.body = xdr.OperationBody.createWithdrawalRequest(withdrawRequestOp);
         BaseOperation.setSourceAccount(opAttributes, opts);
@@ -88,18 +71,6 @@ export class CreateWithdrawRequestBuilder {
             percent: BaseOperation._fromXDRAmount(request.fee().percent()),
         };
         result.externalDetails = JSON.parse(request.externalDetails());
-        result.details = {
-            type: request.details().switch(),
-            autoConversion: {
-                destAsset: request.details().autoConversion().destAsset(),
-                expectedAmount: BaseOperation._fromXDRAmount(request.details().autoConversion().expectedAmount()),
-            },
-        };
-        switch (attrs.ext().switch()) {
-            case xdr.LedgerVersion.withdrawalTask(): {
-                result.allTasks = attrs.ext().allTasks();
-                break;
-            }
-        }
+        result.allTasks = attrs.allTasks();
     }
 }

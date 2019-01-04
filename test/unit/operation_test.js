@@ -366,7 +366,6 @@ describe('Operation', function () {
                     accountId: 'GCEZWKCA5VLDNRLN3RPRJMRZOX3Z6G5CHCGSNFHEYVXM3XOJMDS674JZ',
                     subtype: '3',
                     upperBound: '123',
-                    feeAsset: 'USD'
                 },
             };
             let op = StellarBase.Operation.setFees(opts);
@@ -383,7 +382,6 @@ describe('Operation', function () {
             expect(obj.fee.accountId).to.be.equal("GCEZWKCA5VLDNRLN3RPRJMRZOX3Z6G5CHCGSNFHEYVXM3XOJMDS674JZ");
             expect(obj.fee.hash.toString()).to.be.equal(StellarBase.hash("type:0asset:ETCsubtype:3accountID:GCEZWKCA5VLDNRLN3RPRJMRZOX3Z6G5CHCGSNFHEYVXM3XOJMDS674JZ").toString());
             expect(obj.fee.asset).to.be.equal('ETC');
-            expect(obj.fee.feeAsset).to.be.equal('USD');
         });
 
         it("fails to create setFees operation with an invalid FeeType", function () {

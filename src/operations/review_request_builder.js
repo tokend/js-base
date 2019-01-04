@@ -76,14 +76,14 @@ export class ReviewRequestBuilder {
             opts.externalDetails = {};
         }
 
-        let reviewDetails = new xdr.ReviewDetails({
+        attrs.reviewDetails = new xdr.ReviewDetails({
             tasksToAdd: opts.tasksToAdd,
             tasksToRemove: opts.tasksToRemove,
             externalDetails: JSON.stringify(opts.externalDetails),
             ext: new xdr.ReviewDetailsExt(xdr.LedgerVersion.emptyVersion())
         });
 
-        attrs.ext = new xdr.ReviewRequestOpExt.addTasksToReviewableRequest(reviewDetails);
+        attrs.ext = new xdr.ReviewRequestOpExt(xdr.LedgerVersion.emptyVersion());
 
         return attrs;
     }
@@ -137,32 +137,6 @@ export class ReviewRequestBuilder {
         attrs.requestDetails = new xdr.ReviewRequestOpRequestDetails.amlAlert(new xdr.AmlAlertDetails({
             ext: new xdr.AmlAlertDetailsExt(xdr.LedgerVersion.emptyVersion()),
             comment: opts.comment,
-        }));
-
-        return ReviewRequestBuilder._createOp(opts, attrs);
-    }
-
-    /**
-     * Creates operation to review two step withdraw request
-     * @param {object} opts
-     * @param {string} opts.requestID - request ID
-     * @param {string} opts.requestHash - Hash of the request to be reviewed
-     * @param {number} opts.action - action to be performed over request (xdr.ReviewRequestOpAction)
-     * @param {string} opts.reason - Reject reason
-     * @param {string} opts.externalDetails - External System details
-     * @param {string} [opts.source] - The source account for the payment. Defaults to the transaction's source account.
-     * @returns {xdr.ReviewRequestOp}
-     */
-    static reviewTwoStepWithdrawRequest(opts) {
-        if (isUndefined(opts.externalDetails)) {
-            throw new Error("opts.externalDetails is invalid");
-        }
-
-        let attrs = ReviewRequestBuilder._prepareAttrs(opts);
-
-        attrs.requestDetails = new xdr.ReviewRequestOpRequestDetails.twoStepWithdrawal(new xdr.WithdrawalDetails({
-            ext: new xdr.WithdrawalDetailsExt(xdr.LedgerVersion.emptyVersion()),
-            externalDetails: JSON.stringify(opts.externalDetails),
         }));
 
         return ReviewRequestBuilder._createOp(opts, attrs);
@@ -317,53 +291,17 @@ export class ReviewRequestBuilder {
 
                 break;
             }
-            case xdr.ReviewableRequestType.twoStepWithdrawal(): {
-                result.twoStepWithdrawal = {
-                    externalDetails: attrs.requestDetails().twoStepWithdrawal().externalDetails(),
-                };
-                break;
-            }
-            case xdr.ReviewableRequestType.updateKyc(): {
-                result.updateKyc = {
-                    tasksToAdd: attrs.requestDetails().updateKyc().tasksToAdd(),
-                    tasksToRemove: attrs.requestDetails().updateKyc().tasksToRemove(),
-                    externalDetails: attrs.requestDetails().updateKyc().externalDetails(),
-                };
-                break;
-            }
             case xdr.ReviewableRequestType.amlAlert(): {
                 result.amlAlert = {
                     comment: attrs.requestDetails().amlAlertDetails().comment(),
                 };
                 break;
             }
-            case xdr.ReviewableRequestType.invoice(): {
-                let billPayDetails = {};
-                PaymentV2Builder.paymentV2ToObject(billPayDetails, attrs.requestDetails().billPay().paymentDetails());
-                result.invoice = {
-                    billPayDetails: billPayDetails
-                };
-                break;
-            }
-            case xdr.ReviewableRequestType.contract(): {
-                result.contract = {
-                    details: JSON.parse(attrs.requestDetails().contract().details())
-                };
-                break;
-            }
         }
         result.action = attrs.action().value;
         result.reason = attrs.reason();
-
-        switch (attrs.ext().switch())
-        {
-            case xdr.LedgerVersion.addTasksToReviewableRequest(): {
-                let reviewDetails = attrs.ext().reviewDetails();
-                result.tasksToAdd = reviewDetails.tasksToAdd();
-                result.tasksToRemove = reviewDetails.tasksToRemove();
-                result.externalDetails = reviewDetails.externalDetails();
-                break;
-            }
-        }
+        result.tasksToAdd = attrs.reviewDetails().tasksToAdd();
+        result.tasksToRemove = attrs.reviewDetails().tasksToRemove();
+        result.externalDetails = attrs.reviewDetails().externalDetails();
     }
 }

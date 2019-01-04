@@ -12,7 +12,6 @@ describe('Manage Sale Creation request op', function () {
             endTime: "4123425",
             softCap: "20000.21",
             hardCap: "648251",
-            saleState: StellarBase.xdr.SaleState.promotion(),
             baseAssetForHardCap: "648251",
             details: {
                 short_description: "short description",
@@ -42,7 +41,6 @@ describe('Manage Sale Creation request op', function () {
         expect(opt.startTime).to.be.equal(obj.startTime);
         expect(opt.endTime).to.be.equal(obj.endTime);
         expect(opt.softCap).to.be.equal(obj.softCap);
-        expect(opt.saleState).to.be.equal(obj.saleState);
         expect(JSON.stringify(opt.quoteAssets)).to.be.equal(JSON.stringify(obj.quoteAssets));
         expect(isEqual(opt.details, obj.details)).to.be.true;
 

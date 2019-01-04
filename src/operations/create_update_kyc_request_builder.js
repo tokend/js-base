@@ -32,7 +32,6 @@ export class CreateUpdateKYCRequestBuilder {
         attrs.accountTypeToSet = BaseOperation._accountTypeFromNumber(opts.accountTypeToSet);
         attrs.kycLevelToSet = opts.kycLevelToSet;
         attrs.kycData = JSON.stringify(opts.kycData);
-        attrs.allTasks = BaseOperation._checkUnsignedIntValue("allTasks", opts.allTasks);
         attrs.ext = new xdr.UpdateKycRequestDataExt(xdr.LedgerVersion.emptyVersion());
 
         let updateKYCRequestData = new xdr.UpdateKycRequestData(attrs);
@@ -40,6 +39,7 @@ export class CreateUpdateKYCRequestBuilder {
         let kycRequestOp = new xdr.CreateUpdateKycRequestOp({
             requestId: UnsignedHyper.fromString(opts.requestID),
             updateKycRequestData: updateKYCRequestData,
+            allTasks: BaseOperation._checkUnsignedIntValue("allTasks", opts.allTasks),
             ext: new xdr.CreateUpdateKycRequestOpExt(xdr.LedgerVersion.emptyVersion()),
         });
         let opAttributes = {};
@@ -54,6 +54,6 @@ export class CreateUpdateKYCRequestBuilder {
         result.accountTypeToSet = attrs.updateKycRequestData().accountTypeToSet().value;
         result.kycLevelToSet = attrs.updateKycRequestData().kycLevelToSet();
         result.kycData = JSON.parse(attrs.updateKycRequestData().kycData());
-        result.allTasks = attrs.updateKycRequestData().allTasks();
+        result.allTasks = attrs.allTasks();
     }
 }

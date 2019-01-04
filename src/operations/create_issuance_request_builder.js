@@ -63,7 +63,8 @@ export class CreateIssuanceRequestBuilder {
             request: request,
             reference: opts.reference,
             externalDetails: request.externalDetails(),
-            ext: new xdr.CreateIssuanceRequestOpExt.addTasksToReviewableRequest(rawAllTasks)
+            allTasks: rawAllTasks,
+            ext: new xdr.CreateIssuanceRequestOpExt(xdr.LedgerVersion.emptyVersion())
         });
         let opAttributes = {};
         opAttributes.body = xdr.OperationBody.createIssuanceRequest(issuanceRequestOp);
@@ -78,11 +79,6 @@ export class CreateIssuanceRequestBuilder {
         result.amount = BaseOperation._fromXDRAmount(request.amount());
         result.receiver = BaseOperation.balanceIdtoString(request.receiver());
         result.externalDetails = JSON.parse(request.externalDetails());
-        switch (attrs.ext().switch()) {
-            case xdr.LedgerVersion.addTasksToReviewableRequest(): {
-                result.allTasks = attrs.ext().allTasks();
-                break;
-            }
-        }
+        result.allTasks = attrs.allTasks();
     }
 }

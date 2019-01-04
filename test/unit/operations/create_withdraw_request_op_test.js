@@ -11,15 +11,13 @@ describe('Withdraw request op', function () {
         };
         let balance = StellarBase.Keypair.random().balanceId();
         let externalDetails = {a: "some details"};
-        let destAsset = "USD";
-        let expectedDestAssetAmount= "33333.12";
+        let allTasks = 12;
         let op = StellarBase.CreateWithdrawRequestBuilder.createWithdrawWithAutoConversion({
             balance: balance,
             amount: amount,
             fee: fee,
             externalDetails: externalDetails,
-            destAsset: destAsset,
-            expectedDestAssetAmount: expectedDestAssetAmount,
+            allTasks: allTasks,
         });
         var xdr = op.toXDR("hex");
         var operation = StellarBase.xdr.Operation.fromXDR(new Buffer(xdr, "hex"));
@@ -30,8 +28,6 @@ describe('Withdraw request op', function () {
         expect(fee.fixed).to.be.equal(obj.fee.fixed);
         expect(fee.percent).to.be.equal(obj.fee.percent);
         expect(isEqual(externalDetails, obj.externalDetails)).to.be.true;
-        expect(StellarBase.xdr.WithdrawalType.autoConversion()).to.be.equal(obj.details.type);
-        expect(destAsset).to.be.equal(obj.details.autoConversion.destAsset);
-        expect(expectedDestAssetAmount).to.be.equal(obj.details.autoConversion.expectedAmount);
+        expect(allTasks).to.be.equal(obj.allTasks);
     });
 });

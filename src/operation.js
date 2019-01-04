@@ -23,7 +23,6 @@ import { SaleRequestBuilder } from './operations/sale_request_builder';
 import { ManageOfferBuilder } from './operations/manage_offer_builder';
 import { ManageKeyValueBuilder } from './operations/manage_key_value_builder';
 import { SetOptionsBuilder} from "./operations/set_options_builder";
-import {PayoutOpBuilder} from "./operations/payout_builder";
 import { ManageExternalSystemAccountIdPoolEntryBuilder } from "./operations/manage_external_system_account_id_pool_entry_builder";
 import { BindExternalSystemAccountIdBuilder} from "./operations/bind_external_system_account_id_builder";
 import { CreateAMLRequestBuilder } from "./operations/create_aml_request_builder";
@@ -32,9 +31,9 @@ import { PaymentV2Builder } from "./operations/payment_v2_builder";
 import { ManageSaleBuilder} from "./operations/manage_sale";
 import { ManageLimitsBuilder} from "./operations/manage_limits_builder";
 import { CreateManageLimitsRequestBuilder } from "./operations/create_manage_limits_request_builder";
-import { ManageInvoiceRequestBuilder } from "./operations/manage_invoice_request_builder";
-import { ManageContractRequestBuilder } from "./operations/manage_contract_request_builder";
-import { ManageContractBuilder } from "./operations/manage_contract_builder";
+import { CreateAtomicSwapBidCreationRequestBuilder } from "./operations/create_atomic_swap_bid_creation_request_builder";
+import { CancelAtomicSwapBidBuilder } from "./operations/cancel_atomic_swap_bid_builder";
+import { CreateAtomicSwapRequestBuilder } from "./operations/create_atomic_swap_request_builder";
 
 export class Operation extends BaseOperation {
 
@@ -221,7 +220,6 @@ export class Operation extends BaseOperation {
      * @param {string} opts.fee.feeType - feeType
      * @param {string} opts.fee.feeAmount - fee amount
      * @param {bool} [opts.isDelete] - isDelete - true for remove fee
-     * @param {string} opts.fee.feeAsset - asset of fee
      * @param {string} [opts.source] - The source account for the payment. Defaults to the transaction's source account.
      * @returns {xdr.SetFeesOp}
      */
@@ -269,13 +267,6 @@ export class Operation extends BaseOperation {
                 upperBound: Operation._toXDRAmount(opts.fee.upperBound),
                 ext: new xdr.FeeEntryExt(xdr.LedgerVersion.emptyVersion()),
             };
-
-            if (!isUndefined(opts.fee.feeAsset)) {
-                if (!Operation.isValidAsset(opts.fee.feeAsset)) {
-                    throw new TypeError('Fee asset is invalid');
-                }
-                feeData.ext = xdr.FeeEntryExt.crossAssetFee(opts.fee.feeAsset);
-            }
 
             var data = `type:${opts.fee.feeType.value}asset:${opts.fee.asset}subtype:${opts.fee.subtype.toString()}`;
             if (opts.fee.accountId) {
@@ -544,11 +535,6 @@ export class Operation extends BaseOperation {
                         result.fee.accountType = attrs.fee().accountType();
                     }
 
-                    switch (attrs.fee().ext().switch().name) {
-                        case "crossAssetFee":
-                            result.fee.feeAsset = attrs.fee().ext().value();
-                    }
-
                     result.fee.hash = attrs.fee().hash();
                 }
                 break;
@@ -575,15 +561,6 @@ export class Operation extends BaseOperation {
             case xdr.OperationType.manageOffer():
                 ManageOfferBuilder.manageOfferOpToObject(result, attrs);
                 break;
-            case xdr.OperationType.manageInvoiceRequest():
-                ManageInvoiceRequestBuilder.manageInvoiceRequestOpToObject(result, attrs);
-                break;
-            case xdr.OperationType.manageContractRequest():
-                ManageContractRequestBuilder.manageContractRequestOpToObject(result, attrs);
-                break;
-            case xdr.OperationType.manageContract():
-                ManageContractBuilder.manageContractOpToObject(result, attrs);
-                break;
             case xdr.OperationType.manageAssetPair():
                 result.action = attrs.action();
                 result.base = attrs.base();
@@ -606,9 +583,6 @@ export class Operation extends BaseOperation {
                 break;
             case xdr.OperationType.checkSaleState():
                 SaleRequestBuilder.checkSaleStateToObject(result, attrs);
-                break;
-            case xdr.OperationType.payout():
-                PayoutOpBuilder.payoutOpToObject(result, attrs);
                 break;
             case xdr.OperationType.manageExternalSystemAccountIdPoolEntry():
                 ManageExternalSystemAccountIdPoolEntryBuilder.manageExternalSystemAccountIdPoolEntryToObject(result, attrs);
@@ -633,6 +607,15 @@ export class Operation extends BaseOperation {
                 break;
             case xdr.OperationType.createManageLimitsRequest():
                 CreateManageLimitsRequestBuilder.createManageLimitsRequestToObject(result, attrs);
+                break;
+            case xdr.OperationType.createAswapBidRequest():
+                CreateAtomicSwapBidCreationRequestBuilder.createASwapBidCreationRequestToObject(result, attrs);
+                break;
+            case xdr.OperationType.cancelAswapBid():
+                CancelAtomicSwapBidBuilder.cancelASwapBidToObject(result, attrs);
+                break;
+            case xdr.OperationType.createAswapRequest():
+                CreateAtomicSwapRequestBuilder.createASwapRequestToObject(result, attrs);
                 break;
             case xdr.OperationType.cancelSaleRequest():
                 SaleRequestBuilder.cancelSaleCreationRequestToObject(result, attrs);

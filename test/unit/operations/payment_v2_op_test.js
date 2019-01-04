@@ -13,14 +13,12 @@ describe("PaymentV2 op", function () {
             amount: amount,
             feeData: {
                 sourceFee: {
-                    maxPaymentFee: '120',
-                    fixedFee: '110',
-                    feeAsset: 'USD',
+                    percent: '120',
+                    fixed: '110',
                 },
                 destinationFee: {
-                    maxPaymentFee: '20',
-                    fixedFee: '10',
-                    feeAsset: 'USD',
+                    percent: '20',
+                    fixed: '10',
                 },
                 sourcePaysForDest: true
             },
@@ -35,12 +33,10 @@ describe("PaymentV2 op", function () {
         expect(obj.destination).to.be.equal(destinationBalanceId);
         expect(obj.amount).to.be.equal(amount);
         expect(obj.feeData.sourcePaysForDest).to.be.equal(true);
-        expect(obj.feeData.sourceFee.fixedFee).to.be.equal('110');
-        expect(obj.feeData.sourceFee.maxPaymentFee).to.be.equal('120');
-        expect(obj.feeData.sourceFee.feeAsset).to.be.equal('USD');
-        expect(obj.feeData.destinationFee.fixedFee).to.be.equal('10');
-        expect(obj.feeData.destinationFee.maxPaymentFee).to.be.equal('20');
-        expect(obj.feeData.destinationFee.feeAsset).to.be.equal('USD');
+        expect(obj.feeData.sourceFee.fixed).to.be.equal('110');
+        expect(obj.feeData.sourceFee.percent).to.be.equal('120');
+        expect(obj.feeData.destinationFee.fixed).to.be.equal('10');
+        expect(obj.feeData.destinationFee.percent).to.be.equal('20');
         expect(obj.subject).to.be.equal('subj');
         expect(obj.reference).to.be.equal('ref');
     })
@@ -51,14 +47,12 @@ describe("PaymentV2 op", function () {
             amount: amount,
             feeData: {
                 sourceFee: {
-                    maxPaymentFee: '120',
-                    fixedFee: '110',
-                    feeAsset: 'USD',
+                    percent: '120',
+                    fixed: '110',
                 },
                 destinationFee: {
-                    maxPaymentFee: '20',
-                    fixedFee: '10',
-                    feeAsset: 'USD',
+                    percent: '20',
+                    fixed: '10',
                 },
                 sourcePaysForDest: true
             },
@@ -73,12 +67,10 @@ describe("PaymentV2 op", function () {
         expect(obj.destination).to.be.equal(destinationAccountId);
         expect(obj.amount).to.be.equal(amount);
         expect(obj.feeData.sourcePaysForDest).to.be.equal(true);
-        expect(obj.feeData.sourceFee.fixedFee).to.be.equal('110');
-        expect(obj.feeData.sourceFee.maxPaymentFee).to.be.equal('120');
-        expect(obj.feeData.sourceFee.feeAsset).to.be.equal('USD');
-        expect(obj.feeData.destinationFee.fixedFee).to.be.equal('10');
-        expect(obj.feeData.destinationFee.maxPaymentFee).to.be.equal('20');
-        expect(obj.feeData.destinationFee.feeAsset).to.be.equal('USD');
+        expect(obj.feeData.sourceFee.fixed).to.be.equal('110');
+        expect(obj.feeData.sourceFee.percent).to.be.equal('120');
+        expect(obj.feeData.destinationFee.fixed).to.be.equal('10');
+        expect(obj.feeData.destinationFee.percent).to.be.equal('20');
         expect(obj.subject).to.be.equal('subj');
         expect(obj.reference).to.be.equal('ref');
     })

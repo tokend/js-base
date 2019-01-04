@@ -13,7 +13,8 @@ describe('ManageAsset', function () {
                 initialPreissuedAmount: "12.14",
                 details: {
                     name: "USD Name",
-                }
+                },
+                allTasks: 2,
             }
             let op = StellarBase.ManageAssetBuilder.assetCreationRequest(opts);
             var xdr = op.toXDR("hex");
@@ -28,6 +29,7 @@ describe('ManageAsset', function () {
             expect(obj.maxIssuanceAmount).to.be.equal(opts.maxIssuanceAmount);
             expect(obj.policies).to.be.equal(opts.policies);
             expect(obj.initialPreissuedAmount).to.be.equal(opts.initialPreissuedAmount);
+            expect(obj.allTasks).to.be.equal(opts.allTasks);
         });
     });
 
@@ -37,6 +39,7 @@ describe('ManageAsset', function () {
                 code: "USD",
                 policies: 12,
                 requestID: "0",
+                allTasks: 1,
             }
             let op = StellarBase.ManageAssetBuilder.assetUpdateRequest(opts);
             var xdr = op.toXDR("hex");
@@ -47,6 +50,7 @@ describe('ManageAsset', function () {
             expect(obj.requestType).to.be.equal("createAssetUpdateRequest");
             expect(obj.code).to.be.equal(opts.code);
             expect(obj.policies).to.be.equal(opts.policies);
+            expect(obj.allTasks).to.be.equal(opts.allTasks);
         });
     });
 

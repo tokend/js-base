@@ -25,7 +25,6 @@ export class SaleRequestBuilder {
      * @param {object} opts.quoteAssets.asset - asset code of the quote asset
      * @param {number} opts.saleType - Sale type
      * @param {string} opts.baseAssetForHardCap - specifies the amount of base asset required for hard cap
-     * @param {SaleState} opts.saleState - specifies the initial state of the sale
      * @param {string} [opts.source] - The source account for the operation. Defaults to the transaction's source account.
      * @returns {xdr.CreateSaleCreationRequestOp}
      */
@@ -109,64 +108,34 @@ export class SaleRequestBuilder {
             attrs.saleType = opts.saleType;
         }
 
-        var hasBaseAssetForHardCap = !isUndefined(opts.baseAssetForHardCap);
-
         var saleTypeExt;
-        var saleTypeExtTypedSale;
         switch(attrs.saleType) {
             case xdr.SaleType.basicSale().value: {
                 var basicSale = new xdr.BasicSale({
                     ext: new xdr.BasicSaleExt(xdr.LedgerVersion.emptyVersion())
                 });
-                saleTypeExtTypedSale = xdr.SaleTypeExtTypedSale.basicSale(basicSale);
-                saleTypeExt = new xdr.SaleTypeExt({
-                    typedSale: saleTypeExtTypedSale
-                });
+                saleTypeExt = xdr.SaleTypeExt.basicSale(basicSale);
                 break;
             }
             case xdr.SaleType.crowdFunding().value: {
                 var crowdFundingSale = new xdr.CrowdFundingSale({
                     ext: new xdr.CrowdFundingSaleExt(xdr.LedgerVersion.emptyVersion())
                 });
-                saleTypeExtTypedSale = xdr.SaleTypeExtTypedSale.crowdFunding(crowdFundingSale);
-                saleTypeExt = new xdr.SaleTypeExt({
-                    typedSale: saleTypeExtTypedSale
-                });
+                saleTypeExt = xdr.SaleTypeExt.crowdFunding(crowdFundingSale);
                 break;
             }
             case xdr.SaleType.fixedPrice().value: {
                 var fixedPriceSale = new xdr.FixedPriceSale({
                     ext: new xdr.FixedPriceSaleExt(xdr.LedgerVersion.emptyVersion())
                 });
-                saleTypeExtTypedSale = xdr.SaleTypeExtTypedSale.fixedPrice(fixedPriceSale);
-                saleTypeExt = new xdr.SaleTypeExt({
-                    typedSale: saleTypeExtTypedSale
-                });
+                saleTypeExt = xdr.SaleTypeExt.fixedPrice(fixedPriceSale);
                 break;
             }
         }
 
-        if (hasBaseAssetForHardCap && isUndefined(opts.saleState) &&
-        attrs.saleType !== xdr.SaleType.fixedPrice().value) {
-            var extV2 = new xdr.SaleCreationRequestExtV2({
-                saleTypeExt: saleTypeExt,
-                requiredBaseAssetForHardCap: BaseOperation._toUnsignedXDRAmount(opts.baseAssetForHardCap) });
-
-            attrs.ext = xdr.SaleCreationRequestExt.allowToSpecifyRequiredBaseAssetAmountForHardCap(extV2);
-        } else if (!isUndefined(opts.saleState)) {
-            var extV3 = new xdr.SaleCreationRequestExtV3({
-                saleTypeExt: saleTypeExt,
-                requiredBaseAssetForHardCap: BaseOperation._toUnsignedXDRAmount(opts.baseAssetForHardCap),
-                state: opts.saleState });
-
-            attrs.ext = xdr.SaleCreationRequestExt.statableSale(extV3);
-        } else if (attrs.saleType === xdr.SaleType.crowdFunding().value) {
-            attrs.ext = xdr.SaleCreationRequestExt.typedSale(saleTypeExt);
-        } else if (attrs.saleType === xdr.SaleType.fixedPrice().value &&
-            (!hasBaseAssetForHardCap || isUndefined(opts.saleState))) {
-            throw new Error("opts.saleType is FixedPrice, but no baseAssetForHardCap and/or saleState not provided");
-        }
-
+        attrs.sequenceNumber = 0;
+        attrs.requiredBaseAssetForHardCap = BaseOperation._toUnsignedXDRAmount(opts.baseAssetForHardCap);
+        attrs.saleTypeExt = saleTypeExt;
         var request = new xdr.SaleCreationRequest(attrs);
 
         if (isUndefined(opts.requestID)) {
@@ -235,7 +204,9 @@ export class SaleRequestBuilder {
         result.endTime = request.endTime().toString();
         result.softCap = BaseOperation._fromXDRAmount(request.softCap());
         result.hardCap = BaseOperation._fromXDRAmount(request.hardCap());
+        result.baseAssetForHardCap = BaseOperation._fromXDRAmount(request.requiredBaseAssetForHardCap());
         result.details = JSON.parse(request.details());
+        result.saleType = request.saleTypeExt().switch().value;
         result.quoteAssets = [];
         for (var i = 0; i < request.quoteAssets().length; i++) {
             result.quoteAssets.push({
