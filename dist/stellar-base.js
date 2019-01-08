@@ -411,9 +411,9 @@ var StellarBase =
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	// revision: 51a1ca42732e6fb0e32dbd1764f1f6a921817f77
+	// revision: 056150543b034db81b782b7acd09406b053ee4f1
 	// branch:   (detached
-	// Automatically generated on 2019-01-04T15:09:58+00:00
+	// Automatically generated on 2019-01-08T18:10:02+00:00
 	// DO NOT EDIT or your changes may be overwritten
 	/* jshint maxstatements:2147483647  */ /* jshint esnext:true  */"use strict";Object.defineProperty(exports,"__esModule",{value:true});function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj["default"] = obj;return newObj;}}var _jsXdr=__webpack_require__(3);var XDR=_interopRequireWildcard(_jsXdr);var types=XDR.config(function(xdr){ // === xdr source ============================================================
 	//
@@ -2260,7 +2260,9 @@ var StellarBase =
 	//   struct BalanceEntry
 	//   {
 	//       BalanceID balanceID;
-	//       uint64 balanceSeqID;
+	//   	// sequenctial ID - unique identifier of the balance, used by ingesting applications to 
+	//   	// identify account, while keeping size of index small 
+	//       uint64 sequentialID;
 	//       AssetCode asset;
 	//       AccountID accountID;
 	//       uint64 amount;
@@ -2276,7 +2278,7 @@ var StellarBase =
 	//   };
 	//
 	// ===========================================================================
-	xdr.struct("BalanceEntry",[["balanceId",xdr.lookup("BalanceId")],["balanceSeqId",xdr.lookup("Uint64")],["asset",xdr.lookup("AssetCode")],["accountId",xdr.lookup("AccountId")],["amount",xdr.lookup("Uint64")],["locked",xdr.lookup("Uint64")],["ext",xdr.lookup("BalanceEntryExt")]]); // === xdr source ============================================================
+	xdr.struct("BalanceEntry",[["balanceId",xdr.lookup("BalanceId")],["sequentialId",xdr.lookup("Uint64")],["asset",xdr.lookup("AssetCode")],["accountId",xdr.lookup("AccountId")],["amount",xdr.lookup("Uint64")],["locked",xdr.lookup("Uint64")],["ext",xdr.lookup("BalanceEntryExt")]]); // === xdr source ============================================================
 	//
 	//   union switch (LedgerVersion v)
 	//       {
@@ -4598,7 +4600,9 @@ var StellarBase =
 	//       AccountID accountID;      // master public key for this account
 	//       AccountID recoveryID;
 	//   
-	//       uint64 accountSeqID;
+	//   	// sequenctial ID - unique identifier of the account, used by ingesting applications to 
+	//   	// identify account, while keeping size of index small 
+	//       uint64 sequentialID;
 	//   
 	//       // fields used for signatures
 	//       // thresholds stores unsigned bytes: [weight of master|low|medium|high]
@@ -4629,7 +4633,7 @@ var StellarBase =
 	//   };
 	//
 	// ===========================================================================
-	xdr.struct("AccountEntry",[["accountId",xdr.lookup("AccountId")],["recoveryId",xdr.lookup("AccountId")],["accountSeqId",xdr.lookup("Uint64")],["thresholds",xdr.lookup("Thresholds")],["signers",xdr.varArray(xdr.lookup("Signer"),2147483647)],["limits",xdr.option(xdr.lookup("Limits"))],["blockReasons",xdr.lookup("Uint32")],["accountType",xdr.lookup("AccountType")],["referrer",xdr.option(xdr.lookup("AccountId"))],["policies",xdr.lookup("Int32")],["ext",xdr.lookup("AccountEntryExt")]]); // === xdr source ============================================================
+	xdr.struct("AccountEntry",[["accountId",xdr.lookup("AccountId")],["recoveryId",xdr.lookup("AccountId")],["sequentialId",xdr.lookup("Uint64")],["thresholds",xdr.lookup("Thresholds")],["signers",xdr.varArray(xdr.lookup("Signer"),2147483647)],["limits",xdr.option(xdr.lookup("Limits"))],["blockReasons",xdr.lookup("Uint32")],["accountType",xdr.lookup("AccountType")],["referrer",xdr.option(xdr.lookup("AccountId"))],["policies",xdr.lookup("Int32")],["ext",xdr.lookup("AccountEntryExt")]]); // === xdr source ============================================================
 	//
 	//   union switch (LedgerVersion v)
 	//       {

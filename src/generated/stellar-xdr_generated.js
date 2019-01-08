@@ -1,6 +1,6 @@
-// revision: 51a1ca42732e6fb0e32dbd1764f1f6a921817f77
+// revision: 056150543b034db81b782b7acd09406b053ee4f1
 // branch:   (detached
-// Automatically generated on 2019-01-04T15:09:58+00:00
+// Automatically generated on 2019-01-08T18:10:02+00:00
 // DO NOT EDIT or your changes may be overwritten
 
 /* jshint maxstatements:2147483647  */
@@ -3071,7 +3071,9 @@ xdr.union("BalanceEntryExt", {
 //   struct BalanceEntry
 //   {
 //       BalanceID balanceID;
-//       uint64 balanceSeqID;
+//   	// sequenctial ID - unique identifier of the balance, used by ingesting applications to 
+//   	// identify account, while keeping size of index small 
+//       uint64 sequentialID;
 //       AssetCode asset;
 //       AccountID accountID;
 //       uint64 amount;
@@ -3089,7 +3091,7 @@ xdr.union("BalanceEntryExt", {
 // ===========================================================================
 xdr.struct("BalanceEntry", [
   ["balanceId", xdr.lookup("BalanceId")],
-  ["balanceSeqId", xdr.lookup("Uint64")],
+  ["sequentialId", xdr.lookup("Uint64")],
   ["asset", xdr.lookup("AssetCode")],
   ["accountId", xdr.lookup("AccountId")],
   ["amount", xdr.lookup("Uint64")],
@@ -6852,7 +6854,9 @@ xdr.union("AccountEntryExt", {
 //       AccountID accountID;      // master public key for this account
 //       AccountID recoveryID;
 //   
-//       uint64 accountSeqID;
+//   	// sequenctial ID - unique identifier of the account, used by ingesting applications to 
+//   	// identify account, while keeping size of index small 
+//       uint64 sequentialID;
 //   
 //       // fields used for signatures
 //       // thresholds stores unsigned bytes: [weight of master|low|medium|high]
@@ -6886,7 +6890,7 @@ xdr.union("AccountEntryExt", {
 xdr.struct("AccountEntry", [
   ["accountId", xdr.lookup("AccountId")],
   ["recoveryId", xdr.lookup("AccountId")],
-  ["accountSeqId", xdr.lookup("Uint64")],
+  ["sequentialId", xdr.lookup("Uint64")],
   ["thresholds", xdr.lookup("Thresholds")],
   ["signers", xdr.varArray(xdr.lookup("Signer"), 2147483647)],
   ["limits", xdr.option(xdr.lookup("Limits"))],
