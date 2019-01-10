@@ -1,6 +1,6 @@
-// revision: 056150543b034db81b782b7acd09406b053ee4f1
+// revision: 4528535615a5db45006557d390186b1861724e74
 // branch:   (detached
-// Automatically generated on 2019-01-08T18:10:02+00:00
+// Automatically generated on 2019-01-10T10:05:57+00:00
 // DO NOT EDIT or your changes may be overwritten
 
 /* jshint maxstatements:2147483647  */
@@ -12522,7 +12522,7 @@ xdr.struct("OfferEntry", [
 //
 //   enum ReviewableRequestType
 //   {
-//       ASSET_CREATE = 0,
+//   	NONE = 0, // use this request type in ReviewRequestOp extended result if additional info is not required
 //   	ASSET_UPDATE = 1,
 //   	PRE_ISSUANCE_CREATE = 2,
 //   	ISSUANCE_CREATE = 3,
@@ -12532,7 +12532,7 @@ xdr.struct("OfferEntry", [
 //       AML_ALERT = 7,
 //   	UPDATE_KYC = 8,
 //   	UPDATE_SALE_DETAILS = 9,
-//   	NONE = 10, // use this request type in ReviewRequestOp extended result if additional info is not required
+//   	ASSET_CREATE = 10,
 //   	INVOICE = 11,
 //   	CONTRACT = 12,
 //   	CREATE_ATOMIC_SWAP_BID = 16,
@@ -12541,7 +12541,7 @@ xdr.struct("OfferEntry", [
 //
 // ===========================================================================
 xdr.enum("ReviewableRequestType", {
-  assetCreate: 0,
+  none: 0,
   assetUpdate: 1,
   preIssuanceCreate: 2,
   issuanceCreate: 3,
@@ -12551,7 +12551,7 @@ xdr.enum("ReviewableRequestType", {
   amlAlert: 7,
   updateKyc: 8,
   updateSaleDetail: 9,
-  none: 10,
+  assetCreate: 10,
   invoice: 11,
   contract: 12,
   createAtomicSwapBid: 16,

@@ -411,9 +411,9 @@ var StellarBase =
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	// revision: 056150543b034db81b782b7acd09406b053ee4f1
+	// revision: 4528535615a5db45006557d390186b1861724e74
 	// branch:   (detached
-	// Automatically generated on 2019-01-08T18:10:02+00:00
+	// Automatically generated on 2019-01-10T10:05:57+00:00
 	// DO NOT EDIT or your changes may be overwritten
 	/* jshint maxstatements:2147483647  */ /* jshint esnext:true  */"use strict";Object.defineProperty(exports,"__esModule",{value:true});function _interopRequireWildcard(obj){if(obj && obj.__esModule){return obj;}else {var newObj={};if(obj != null){for(var key in obj) {if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key] = obj[key];}}newObj["default"] = obj;return newObj;}}var _jsXdr=__webpack_require__(3);var XDR=_interopRequireWildcard(_jsXdr);var types=XDR.config(function(xdr){ // === xdr source ============================================================
 	//
@@ -8064,7 +8064,7 @@ var StellarBase =
 	//
 	//   enum ReviewableRequestType
 	//   {
-	//       ASSET_CREATE = 0,
+	//   	NONE = 0, // use this request type in ReviewRequestOp extended result if additional info is not required
 	//   	ASSET_UPDATE = 1,
 	//   	PRE_ISSUANCE_CREATE = 2,
 	//   	ISSUANCE_CREATE = 3,
@@ -8074,7 +8074,7 @@ var StellarBase =
 	//       AML_ALERT = 7,
 	//   	UPDATE_KYC = 8,
 	//   	UPDATE_SALE_DETAILS = 9,
-	//   	NONE = 10, // use this request type in ReviewRequestOp extended result if additional info is not required
+	//   	ASSET_CREATE = 10,
 	//   	INVOICE = 11,
 	//   	CONTRACT = 12,
 	//   	CREATE_ATOMIC_SWAP_BID = 16,
@@ -8082,7 +8082,7 @@ var StellarBase =
 	//   };
 	//
 	// ===========================================================================
-	xdr["enum"]("ReviewableRequestType",{assetCreate:0,assetUpdate:1,preIssuanceCreate:2,issuanceCreate:3,withdraw:4,sale:5,limitsUpdate:6,amlAlert:7,updateKyc:8,updateSaleDetail:9,none:10,invoice:11,contract:12,createAtomicSwapBid:16,atomicSwap:17}); // === xdr source ============================================================
+	xdr["enum"]("ReviewableRequestType",{none:0,assetUpdate:1,preIssuanceCreate:2,issuanceCreate:3,withdraw:4,sale:5,limitsUpdate:6,amlAlert:7,updateKyc:8,updateSaleDetail:9,assetCreate:10,invoice:11,contract:12,createAtomicSwapBid:16,atomicSwap:17}); // === xdr source ============================================================
 	//
 	//   union switch (LedgerVersion v)
 	//       {
