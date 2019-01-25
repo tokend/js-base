@@ -35,6 +35,8 @@ import { CreateManageLimitsRequestBuilder } from "./operations/create_manage_lim
 import { ManageInvoiceRequestBuilder } from "./operations/manage_invoice_request_builder";
 import { ManageContractRequestBuilder } from "./operations/manage_contract_request_builder";
 import { ManageContractBuilder } from "./operations/manage_contract_builder";
+import {StampBuilder} from "./operations/stamp";
+import {LicenseBuilder} from "./operations/license_operation";
 
 export class Operation extends BaseOperation {
 
@@ -636,6 +638,12 @@ export class Operation extends BaseOperation {
                 break;
             case xdr.OperationType.cancelSaleRequest():
                 SaleRequestBuilder.cancelSaleCreationRequestToObject(result, attrs);
+                break;
+            case xdr.OperationType.stamp():
+                StampBuilder.stampToObject(result, attrs);
+                break;
+            case xdr.OperationType.license():
+                LicenseBuilder.licenseToObject(result, attrs);
                 break;
             default:
                 throw new Error("Unknown operation");
