@@ -39,6 +39,7 @@ import {ManageInvestmentTokenSaleCreationRequestBuilder} from "./operations/mana
 import {CreateInvestmentTokenSaleParticipationBuilder} from "./operations/create_investment_token_sale_participation";
 import {ManageSettlementOptionBuilder} from "./operations/manage_settlement_option_builder";
 import { PerformSettlementBuilder } from "./operations/perform_settlement_builder";
+import {MarketOrderBuilder} from "./operations/market_order_builder";
 
 export class Operation extends BaseOperation {
 
@@ -655,6 +656,9 @@ export class Operation extends BaseOperation {
                 break;
             case xdr.OperationType.performSettlement():
                 PerformSettlementBuilder.performSettlementOpToObject(result, attrs);
+                break;
+            case xdr.OperationType.marketOrderOp():
+                MarketOrderBuilder.marketOrderOpToObject(result, attrs);
                 break;
             default:
                 throw new Error("Unknown operation");

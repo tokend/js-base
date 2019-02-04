@@ -55,7 +55,7 @@ export class MarketOrderBuilder {
         return new xdr.Operation(opAttributes);
     }
 
-    static manageOfferOpToObject(result, attrs) {
+    static marketOrderOpToObject(result, attrs) {
         result.amount = BaseOperation._fromXDRAmount(attrs.amount());
         result.isBuy = attrs.isBuy();
         result.baseBalance = BaseOperation.balanceIdtoString(attrs.baseBalance());
