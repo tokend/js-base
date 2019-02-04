@@ -13,7 +13,7 @@ export class MarketOrderBuilder {
      * @param {string} opts.quoteBalance
      * @param {boolean} opts.isBuy - if true - buys base asset, false - sells base asset
      * @param {number|string} opts.amount - Amount of the base asset
-     * @param {number|string} opts.orderBookID - 0 - for secondary market, otherwise to participate in sale
+     * @param {number|string} opts.orderBookID - Only 0 allowed (for now)
      * @returns {xdr.MarketOrderOp}
      */
     static marketOrder(opts) {
@@ -33,15 +33,10 @@ export class MarketOrderBuilder {
             throw new Error("isBuy must be boolean");
         }
 
-        if (!BaseOperation.isValidAmount(opts.amount, true)) {
+        if (!BaseOperation.isValidAmount(opts.amount, false)) {
             throw new TypeError('amount argument must be of type String and represent a positive number or zero');
         }
         attributes.amount = BaseOperation._toXDRAmount(opts.amount);
-
-
-        if (isUndefined(opts.offerID)) {
-            opts.offerID = "0";
-        }
 
         if (isUndefined(opts.orderBookID)) {
             opts.orderBookID = "0";
