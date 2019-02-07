@@ -1,6 +1,6 @@
-// revision: 8b1f921ffc1d34024f10c58ec883b2fdd799fb6e
+// revision: f7e1359bcf750d4a2a15fa7d9025804205d56ca2
 // branch:   feature/market_order
-// Automatically generated on 2019-02-04T14:28:23+00:00
+// Automatically generated on 2019-02-07T14:09:36+00:00
 // DO NOT EDIT or your changes may be overwritten
 
 /* jshint maxstatements:2147483647  */
@@ -1260,6 +1260,8 @@ xdr.union("PublicKey", {
 //       ADD_EXPIRATION_DATE_TO_ASSET = 51,
 //       ADD_PROLONGATION_FLAG_TO_ITSALE = 52,
 //   	ADD_ASSET_BALANCE_PRECISION = 53,
+//   	FIX_UPDATE_EXPIRATION_DATE = 54,
+//   	ADD_LEAD_MARKET_MAKER = 55,
 //       REPLACE_ACCOUNT_TYPES_WITH_POLICIES = 999999 // do not use it yet, there are features to be improved
 //   };
 //
@@ -1319,6 +1321,8 @@ xdr.enum("LedgerVersion", {
   addExpirationDateToAsset: 51,
   addProlongationFlagToItsale: 52,
   addAssetBalancePrecision: 53,
+  fixUpdateExpirationDate: 54,
+  addLeadMarketMaker: 55,
   replaceAccountTypesWithPolicy: 999999,
 });
 
@@ -2484,7 +2488,8 @@ xdr.struct("MarketOrderOp", [
 //   	INCORRECT_AMOUNT_PRECISION = -11,
 //   	ASSET_PAIR_DOES_NOT_SUPPORT_MARKET_ORDERS = -12,
 //       INVALID_ORDER_BOOK_ID = -13,
-//   	ORDER_BOOK_EMPTY = -14
+//   	ORDER_BOOK_EMPTY = -14,
+//   	WEIGHTED_PRICE_OVERFLOW = -15 // overflow happened during price calculation
 //   };
 //
 // ===========================================================================
@@ -2504,6 +2509,7 @@ xdr.enum("MarketOrderResultCode", {
   assetPairDoesNotSupportMarketOrder: -12,
   invalidOrderBookId: -13,
   orderBookEmpty: -14,
+  weightedPriceOverflow: -15,
 });
 
 // === xdr source ============================================================
@@ -9855,6 +9861,8 @@ xdr.union("ManageLimitsResult", {
 //
 //   union switch (LedgerVersion v)
 //       {
+//       case ADD_LEAD_MARKET_MAKER:
+//           bool isLMM;
 //       case EMPTY_VERSION:
 //           void;
 //       }
@@ -9864,9 +9872,11 @@ xdr.union("OfferEntryExt", {
   switchOn: xdr.lookup("LedgerVersion"),
   switchName: "v",
   switches: [
+    ["addLeadMarketMaker", "isLmm"],
     ["emptyVersion", xdr.void()],
   ],
   arms: {
+    isLmm: xdr.bool(),
   },
 });
 
@@ -9895,6 +9905,8 @@ xdr.union("OfferEntryExt", {
 //       // reserved for future use
 //       union switch (LedgerVersion v)
 //       {
+//       case ADD_LEAD_MARKET_MAKER:
+//           bool isLMM;
 //       case EMPTY_VERSION:
 //           void;
 //       }
@@ -12386,13 +12398,15 @@ xdr.struct("Limits", [
 //   enum AccountPolicies
 //   {
 //   	NO_PERMISSIONS = 0,
-//   	ALLOW_TO_CREATE_USER_VIA_API = 1
+//   	ALLOW_TO_CREATE_USER_VIA_API = 1,
+//   	LEAD_MARKET_MAKER = 2
 //   };
 //
 // ===========================================================================
 xdr.enum("AccountPolicies", {
   noPermission: 0,
   allowToCreateUserViaApi: 1,
+  leadMarketMaker: 2,
 });
 
 // === xdr source ============================================================
