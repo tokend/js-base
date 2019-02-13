@@ -50,7 +50,7 @@ export class MarketOrderBuilder {
         let marketOrderOp = new xdr.MarketOrderOp(attributes);
 
         let opAttributes = {};
-        opAttributes.body = xdr.OperationBody.marketOrderOp(marketOrderOp);
+        opAttributes.body = xdr.OperationBody.marketOrder(marketOrderOp);
         BaseOperation.setSourceAccount(opAttributes, opts);
         return new xdr.Operation(opAttributes);
     }
