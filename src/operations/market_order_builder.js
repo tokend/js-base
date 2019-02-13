@@ -46,7 +46,7 @@ export class MarketOrderBuilder {
         attributes.baseBalance = Keypair.fromBalanceId(opts.baseBalance).xdrBalanceId();
         attributes.quoteBalance = Keypair.fromBalanceId(opts.quoteBalance).xdrBalanceId();
         attributes.isBuy = opts.isBuy;
-
+        attributes.ext = new xdr.MarketOrderOpExt(xdr.LedgerVersion.emptyVersion());
         let marketOrderOp = new xdr.MarketOrderOp(attributes);
 
         let opAttributes = {};

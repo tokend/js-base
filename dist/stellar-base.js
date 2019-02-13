@@ -50900,7 +50900,7 @@ var StellarBase =
 	            attributes.baseBalance = _keypair.Keypair.fromBalanceId(opts.baseBalance).xdrBalanceId();
 	            attributes.quoteBalance = _keypair.Keypair.fromBalanceId(opts.quoteBalance).xdrBalanceId();
 	            attributes.isBuy = opts.isBuy;
-
+	            attributes.ext = new _generatedStellarXdr_generated2['default'].MarketOrderOpExt(_generatedStellarXdr_generated2['default'].LedgerVersion.emptyVersion());
 	            var marketOrderOp = new _generatedStellarXdr_generated2['default'].MarketOrderOp(attributes);
 
 	            var opAttributes = {};
