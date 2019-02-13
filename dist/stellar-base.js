@@ -46702,7 +46702,7 @@ var StellarBase =
 	                case _generatedStellarXdr_generated2["default"].OperationType.performSettlement():
 	                    _operationsPerform_settlement_builder.PerformSettlementBuilder.performSettlementOpToObject(result, attrs);
 	                    break;
-	                case _generatedStellarXdr_generated2["default"].OperationType.marketOrderOp():
+	                case _generatedStellarXdr_generated2["default"].OperationType.marketOrder():
 	                    _operationsMarket_order_builder.MarketOrderBuilder.marketOrderOpToObject(result, attrs);
 	                    break;
 	                default:

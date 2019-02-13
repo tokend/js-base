@@ -657,7 +657,7 @@ export class Operation extends BaseOperation {
             case xdr.OperationType.performSettlement():
                 PerformSettlementBuilder.performSettlementOpToObject(result, attrs);
                 break;
-            case xdr.OperationType.marketOrderOp():
+            case xdr.OperationType.marketOrder():
                 MarketOrderBuilder.marketOrderOpToObject(result, attrs);
                 break;
             default:
