@@ -50904,7 +50904,7 @@ var StellarBase =
 	            var marketOrderOp = new _generatedStellarXdr_generated2['default'].MarketOrderOp(attributes);
 
 	            var opAttributes = {};
-	            opAttributes.body = _generatedStellarXdr_generated2['default'].OperationBody.marketOrderOp(marketOrderOp);
+	            opAttributes.body = _generatedStellarXdr_generated2['default'].OperationBody.marketOrder(marketOrderOp);
 	            _base_operation.BaseOperation.setSourceAccount(opAttributes, opts);
 	            return new _generatedStellarXdr_generated2['default'].Operation(opAttributes);
 	        }
