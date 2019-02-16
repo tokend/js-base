@@ -52,7 +52,7 @@
     "karma-sauce-launcher": "0.2.14",
     "karma-sinon-chai": "0.3.2",
     "karma-webpack": "1.8.1",
-    "lodash": "4.17.11",
+    "lodash": "4.17.10",
     "minami": "1.2.3",
     "mocha": "1.17.1",
     "run-sequence": "1.2.2",
@@ -61,14 +61,14 @@
     "webpack": "1.15.0"
   },
   "dependencies": {
-    "base32.js": "~0.1.0",
-    "bignumber.js": "^2.0.7",
-    "crc": "^3.3.0",
+    "base32.js": "0.1.0",
+    "bignumber.js": "2.4.0",
+    "crc": "3.5.0",
     "ed25519": "0.0.4",
-    "js-xdr": "^1.0.2",
-    "lodash": "^4.17.10",
-    "sha.js": "^2.4.11",
-    "tweetnacl": "^0.13.0"
+    "js-xdr": "1.0.2",
+    "lodash": "4.17.10",
+    "sha.js": "2.4.11",
+    "tweetnacl": "0.13.3"
   },
   "optionalDependencies": {
     "ed25519": "0.0.4"
