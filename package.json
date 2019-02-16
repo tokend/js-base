@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/tokend/js-base.git"
   },
-  "author": "Distributed Lab <contact@distributedlab.com>",
+  "author": "Distributed Lab <dev@distributedlab.com>",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/tokend/js-base/issues"
