@@ -40,6 +40,7 @@ export { ManageInvestmentTokenSaleCreationRequestBuilder } from "./operations/ma
 export { CreateInvestmentTokenSaleParticipationBuilder } from "./operations/create_investment_token_sale_participation";
 export { ManageSettlementOptionBuilder } from "./operations/manage_settlement_option_builder";
 export { PerformSettlementBuilder } from "./operations/perform_settlement_builder";
+export { MarketOrderBuilder } from "./operations/market_order_builder";
 export { BaseOperation } from "./operations/base_operation";
 
 export * from "./strkey";
